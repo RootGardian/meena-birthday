@@ -25,20 +25,20 @@ export const EndingScreen: React.FC<EndingScreenProps> = () => {
     });
   }, []);
 
-  // Changement de texte toutes les 5 secondes avec effet machine à écrire
+  // Changement de texte toutes les 5 secondes avec effet machine à écrire ultra-fluide
   useEffect(() => {
     const targetTitle = TITLES[titleIndex];
     let currentChar = 0;
     setDisplayedText('');
 
-    // Vitesse d'écriture lettre par lettre
+    // Vitesse d'écriture lettre par lettre fluide (50ms régulier sans saccade)
     const typeInterval = setInterval(() => {
       currentChar++;
       setDisplayedText(targetTitle.slice(0, currentChar));
       if (currentChar >= targetTitle.length) {
         clearInterval(typeInterval);
       }
-    }, 45);
+    }, 50);
 
     // Changement de phrase toutes les 5 secondes
     const switchTimeout = setTimeout(() => {
@@ -94,8 +94,11 @@ export const EndingScreen: React.FC<EndingScreenProps> = () => {
         {/* Titre en gras qui change toutes les 5 secondes avec curseur clignotant | */}
         <div className="min-h-[90px] sm:min-h-[140px] md:min-h-[160px] flex items-center justify-center">
           <h1
-            className="font-editorial text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white tracking-normal drop-shadow-[0_0_35px_rgba(255,255,255,0.85)] drop-shadow-[0_0_75px_rgba(244,114,182,0.45)]"
-            style={{ fontFamily: "'Playfair Display', 'DM Serif Display', 'Bodoni Moda', 'Cormorant Garamond', Georgia, serif" }}
+            className="font-editorial text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white tracking-normal"
+            style={{
+              fontFamily: "'Playfair Display', 'DM Serif Display', 'Bodoni Moda', 'Cormorant Garamond', Georgia, serif",
+              textShadow: '0 0 25px rgba(255, 255, 255, 0.75), 0 0 50px rgba(244, 114, 182, 0.45)',
+            }}
           >
             <span>{displayedText}</span>
             <span className="inline-block w-1 sm:w-1.5 h-8 sm:h-14 lg:h-16 bg-white/90 animate-pulse ml-2 sm:ml-3 align-middle shadow-[0_0_10px_rgba(255,255,255,0.95)]" />
