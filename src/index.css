@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Sacramento&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif-luxury: 'Playfair Display', 'DM Serif Display', 'Bodoni Moda', 'Cormorant Garamond', Georgia, serif;
+  --font-editorial: 'DM Serif Display', 'Playfair Display', 'Bodoni Moda', Georgia, serif;
+  --font-cursive: 'Sacramento', cursive;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+}
+
+.font-serif-luxury {
+  font-family: 'Playfair Display', 'DM Serif Display', 'Bodoni Moda', 'Cormorant Garamond', Georgia, serif !important;
+}
+
+.font-editorial {
+  font-family: 'DM Serif Display', 'Playfair Display', 'Bodoni Moda', Georgia, serif !important;
+}
+
+.font-cursive {
+  font-family: 'Sacramento', cursive !important;
+}
+
+/* Realistic 3D Floating Petals Animation */
+@keyframes realisticPetalFall1 {
+  0% {
+    transform: translateY(-8vh) translateX(0) rotate(0deg) rotateX(0deg) rotateY(0deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.85;
+  }
+  30% {
+    transform: translateY(28vh) translateX(28px) rotate(45deg) rotateX(35deg) rotateY(25deg);
+  }
+  55% {
+    transform: translateY(58vh) translateX(-22px) rotate(115deg) rotateX(-30deg) rotateY(50deg);
+  }
+  80% {
+    transform: translateY(85vh) translateX(30px) rotate(195deg) rotateX(25deg) rotateY(-35deg);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(115vh) translateX(-15px) rotate(280deg) rotateX(0deg) rotateY(0deg);
+    opacity: 0;
+  }
+}
+
+@keyframes realisticPetalFall2 {
+  0% {
+    transform: translateY(-8vh) translateX(0) rotate(0deg) rotateX(0deg) rotateY(0deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.85;
+  }
+  35% {
+    transform: translateY(32vh) translateX(-32px) rotate(-50deg) rotateX(-30deg) rotateY(40deg);
+  }
+  60% {
+    transform: translateY(62vh) translateX(25px) rotate(-130deg) rotateX(40deg) rotateY(-30deg);
+  }
+  82% {
+    transform: translateY(88vh) translateX(-25px) rotate(-210deg) rotateX(-20deg) rotateY(35deg);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(115vh) translateX(20px) rotate(-310deg) rotateX(0deg) rotateY(0deg);
+    opacity: 0;
+  }
+}
+
+.animate-petal-1 {
+  position: fixed;
+  pointer-events: none;
+  animation: realisticPetalFall1 ease-in-out infinite;
+  perspective: 600px;
+  will-change: transform, opacity;
+}
+
+.animate-petal-2 {
+  position: fixed;
+  pointer-events: none;
+  animation: realisticPetalFall2 ease-in-out infinite;
+  perspective: 600px;
+  will-change: transform, opacity;
+}
+
+/* Glowing text and boxes */
+.glow-box {
+  box-shadow: 0 0 25px rgba(244, 114, 182, 0.15), inset 0 0 15px rgba(255, 255, 255, 0.05);
+}
+
+.glow-text {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 40px rgba(244, 114, 182, 0.3);
+}
+
+.glow-btn {
+  box-shadow: 0 0 20px rgba(244, 63, 94, 0.25);
+}
+
+/* Custom Luxury Scrollbar - subtle, thin rose-gold hue, no grey or white */
+.luxury-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.luxury-scrollbar::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.luxury-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.luxury-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(244, 114, 182, 0.45);
+  border-radius: 9999px;
+  border: none;
+}
+
+.luxury-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(244, 114, 182, 0.75);
+}
+
+/* Firefox support */
+.luxury-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(244, 114, 182, 0.45) transparent;
+}
