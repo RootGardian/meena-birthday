@@ -66,6 +66,20 @@ export const MusicPlayer: React.FC = () => {
       }
     };
 
+    // Gestion des événements personnalisés pour couper la musique lors de la lecture d'une vidéo
+    const onPauseMusic = () => {
+      shouldPlayRef.current = false;
+      audio.pause();
+    };
+
+    const onResumeMusic = () => {
+      shouldPlayRef.current = true;
+      audio.play().catch(() => {});
+    };
+
+    window.addEventListener('birthday-pause-music', onPauseMusic);
+    window.addEventListener('birthday-resume-music', onResumeMusic);
+
     audio.addEventListener('ended', handleEnded);
     audio.addEventListener('pause', handlePause);
     document.addEventListener('visibilitychange', handleVisibilityChange);
@@ -83,6 +97,8 @@ export const MusicPlayer: React.FC = () => {
       window.removeEventListener('touchend', unlockAudio);
       window.removeEventListener('pointerdown', unlockAudio);
       window.removeEventListener('scroll', unlockAudio, true);
+      window.removeEventListener('birthday-pause-music', onPauseMusic);
+      window.removeEventListener('birthday-resume-music', onResumeMusic);
       audio.removeEventListener('ended', handleEnded);
       audio.removeEventListener('pause', handlePause);
       document.removeEventListener('visibilitychange', handleVisibilityChange);

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
-import { X, ZoomIn } from 'lucide-react';
+import { X, ZoomIn, Play } from 'lucide-react';
 import { FallingPetals } from './FallingPetals';
 
-// Import des vraies photos de Meena depuis le dossier assets
+// Import de toutes les photos de Meena depuis le dossier assets
 import img1 from '../../assets/WhatsApp Image 2026-11-11 at 23.50.08.jpeg';
 import img2 from '../../assets/WhatsApp Image 2026-11-11 at 23.50.08 (1).jpeg';
 import img3 from '../../assets/WhatsApp Image 2026-11-11 at 23.50.08 (2).jpeg';
@@ -15,9 +15,27 @@ import img9 from '../../assets/WhatsApp Image 2026-11-11 at 23.50.09 (3).jpeg';
 import img10 from '../../assets/WhatsApp Image 2026-11-11 at 23.50.09 (4).jpeg';
 import img11 from '../../assets/WhatsApp Image 2026-11-12 at 08.38.28.jpeg';
 
+// Nouvelles photos ajoutées
+import img12 from '../../assets/WhatsApp Image 2026-11-12 at 13.06.49.jpeg';
+import img13 from '../../assets/WhatsApp Image 2026-11-12 at 13.07.51.jpeg';
+import img14 from '../../assets/WhatsApp Image 2026-11-12 at 13.08.32.jpeg';
+import img15 from '../../assets/WhatsApp Image 2026-11-12 at 13.20.47.jpeg';
+import img16 from '../../assets/WhatsApp Image 2026-11-12 at 13.20.53.jpeg';
+import img17 from '../../assets/WhatsApp Image 2026-11-12 at 13.21.18.jpeg';
+import img18 from '../../assets/WhatsApp Image 2026-11-12 at 13.21.18 (1).jpeg';
+import img19 from '../../assets/WhatsApp Image 2026-11-12 at 13.21.19.jpeg';
+import img20 from '../../assets/WhatsApp Image 2026-11-12 at 13.28.21.jpeg';
+
+// Nouvelles vidéos ajoutées
+import vid1 from '../../assets/WhatsApp Video 2026-11-12 at 13.08.53.mp4';
+import vid2 from '../../assets/WhatsApp Video 2026-11-12 at 13.20.49.mp4';
+import vid3 from '../../assets/WhatsApp Video 2026-11-12 at 13.20.50.mp4';
+import vid4 from '../../assets/WhatsApp Video 2026-11-12 at 13.20.52.mp4';
+
 interface GalleryPolaroid {
   id: number;
   url: string;
+  type?: 'image' | 'video';
   title: string;
   caption: string;
   rotation: string;
@@ -27,72 +45,186 @@ const GALLERY_PHOTOS: GalleryPolaroid[] = [
   {
     id: 1,
     url: img1,
+    type: 'image',
     title: 'Complicité Éternelle',
     caption: 'Des rires gravés dans nos cœurs pour l’éternité.',
     rotation: '-rotate-2',
   },
   {
+    id: 201,
+    url: vid1,
+    type: 'video',
+    title: 'Rires en Mouvement ✨',
+    caption: 'Ce rire communicatif qu’on adore tant entendre !',
+    rotation: 'rotate-3',
+  },
+  {
     id: 11,
     url: img11,
+    type: 'image',
     title: 'Complicité Rayonnante',
     caption: 'Une beauté et une complicité uniques qui illuminent chaque instant.',
-    rotation: 'rotate-2',
+    rotation: '-rotate-1',
   },
   {
     id: 2,
     url: img2,
+    type: 'image',
     title: 'Ton Plus Beau Sourire',
     caption: 'Cette lumière qui rend chaque instant magique.',
-    rotation: 'rotate-3',
+    rotation: 'rotate-2',
+  },
+  {
+    id: 12,
+    url: img12,
+    type: 'image',
+    title: 'Rayon de Soleil',
+    caption: 'Ton énergie et ta joie illuminent tout autour de toi.',
+    rotation: '-rotate-3',
+  },
+  {
+    id: 202,
+    url: vid2,
+    type: 'video',
+    title: 'Moments Vivants 💕',
+    caption: 'La joie de vivre et la complicité à l’état pur.',
+    rotation: 'rotate-2',
   },
   {
     id: 3,
     url: img3,
+    type: 'image',
     title: 'Aventures Ensemble',
     caption: 'Toujours là l’un pour l’autre, main dans la main.',
-    rotation: '-rotate-1',
+    rotation: '-rotate-2',
+  },
+  {
+    id: 13,
+    url: img13,
+    type: 'image',
+    title: 'Élégance Pure',
+    caption: 'La grâce et la douceur incarnées.',
+    rotation: 'rotate-1',
   },
   {
     id: 4,
     url: img6,
+    type: 'image',
     title: 'Fête & Bonheur',
     caption: 'Le meilleur reste encore à venir ma Meena !',
     rotation: 'rotate-4',
   },
   {
+    id: 14,
+    url: img14,
+    type: 'image',
+    title: 'Douceur Partagée',
+    caption: 'Des instants simples qui deviennent inoubliables.',
+    rotation: '-rotate-3',
+  },
+  {
+    id: 203,
+    url: vid3,
+    type: 'video',
+    title: 'Souvenir Précieux 🎥',
+    caption: 'Un instant magique capturé pour toujours.',
+    rotation: '-rotate-1',
+  },
+  {
     id: 6,
     url: img5,
+    type: 'image',
     title: 'Moments Inoubliables',
     caption: 'Des souvenirs précieux qui ne s’effaceront jamais.',
-    rotation: '-rotate-3',
+    rotation: 'rotate-2',
+  },
+  {
+    id: 15,
+    url: img15,
+    type: 'image',
+    title: 'Instants Magiques',
+    caption: 'Chaque instant à tes côtés est un véritable cadeau.',
+    rotation: '-rotate-2',
   },
   {
     id: 7,
     url: img7,
+    type: 'image',
     title: 'Queen Meena',
     caption: 'Une reine magnifique et admirée de tous.',
-    rotation: 'rotate-1',
+    rotation: 'rotate-3',
+  },
+  {
+    id: 16,
+    url: img16,
+    type: 'image',
+    title: 'Reine du Jour',
+    caption: 'Sublime et radieuse pour célébrer ton anniversaire.',
+    rotation: '-rotate-1',
+  },
+  {
+    id: 204,
+    url: vid4,
+    type: 'video',
+    title: 'Fête & Énergie 🌟',
+    caption: 'L’ambiance et la fête avec notre reine Meena !',
+    rotation: 'rotate-2',
   },
   {
     id: 8,
     url: img8,
+    type: 'image',
     title: 'La Joie Partagée',
     caption: 'Merci d’être cette personne si merveilleuse.',
-    rotation: '-rotate-2',
+    rotation: '-rotate-3',
+  },
+  {
+    id: 17,
+    url: img17,
+    type: 'image',
+    title: 'Éclat & Sérénité',
+    caption: 'Une présence qui apaise et qui réconforte.',
+    rotation: 'rotate-1',
   },
   {
     id: 9,
     url: img9,
+    type: 'image',
     title: 'Fous Rires Spontanés',
     caption: 'Avec toi, chaque moment simple devient un fou rire.',
     rotation: 'rotate-3',
   },
   {
+    id: 18,
+    url: img18,
+    type: 'image',
+    title: 'Sourires Gravés',
+    caption: 'Le bonheur de partager ces moments avec toi.',
+    rotation: '-rotate-2',
+  },
+  {
     id: 10,
     url: img10,
+    type: 'image',
     title: 'Que du Bonheur',
     caption: 'Joyeux anniversaire, nous t’aimons fort ! ❤️',
     rotation: '-rotate-4',
+  },
+  {
+    id: 19,
+    url: img19,
+    type: 'image',
+    title: 'Précieuse Meena',
+    caption: 'Un trésor pour ta famille et tous ceux qui t’aiment.',
+    rotation: 'rotate-2',
+  },
+  {
+    id: 20,
+    url: img20,
+    type: 'image',
+    title: 'Bonheur Infini',
+    caption: 'Que cette nouvelle année t’apporte tout ce dont tu rêves.',
+    rotation: '-rotate-2',
   },
 ];
 
@@ -111,6 +243,15 @@ export const OurMemoriesGalleryScreen: React.FC<OurMemoriesGalleryScreenProps> =
       origin: { y: 0.4 },
     });
   }, []);
+
+  // Couper la musique de fond lorsqu'une vidéo est ouverte dans le modal, et la reprendre à la fermeture
+  useEffect(() => {
+    if (activePhoto?.type === 'video') {
+      window.dispatchEvent(new CustomEvent('birthday-pause-music'));
+    } else {
+      window.dispatchEvent(new CustomEvent('birthday-resume-music'));
+    }
+  }, [activePhoto]);
 
   return (
     <div className="relative min-h-screen w-full bg-[#120713] text-[#f7eef2] flex flex-col items-center justify-start p-4 sm:p-8 lg:p-12 overflow-x-hidden select-none font-sans">
@@ -138,28 +279,24 @@ export const OurMemoriesGalleryScreen: React.FC<OurMemoriesGalleryScreenProps> =
               left: `${(i * 23) % 100}%`,
               width: `${(i % 3) + 1}px`,
               height: `${(i % 3) + 1}px`,
-              opacity: (i % 4) * 0.2 + 0.3,
-              animationDuration: `${1.8 + (i % 3) * 0.8}s`,
-              boxShadow: '0 0 8px rgba(255, 255, 255, 0.9)',
+              opacity: (i % 5) * 0.15 + 0.2,
+              animationDuration: `${(i % 4) + 2}s`,
             }}
           />
         ))}
       </div>
 
-      {/* Pétales de rose réalistes qui tombent doucement */}
-      <FallingPetals count={22} />
+      {/* Pétales de roses tombants */}
+      <FallingPetals count={15} />
 
-      {/* Contenu principal */}
-      <div className="relative z-10 max-w-7xl w-full text-center space-y-6 pt-8 pb-20 animate-in fade-in zoom-in-95 duration-700">
-
-        {/* En-tête : "Our Memories" exactement comme sur l'image 2 */}
-        <div className="space-y-2">
-          <h1
-            className="font-serif-luxury italic text-4xl sm:text-6xl md:text-7xl font-normal text-rose-100 tracking-wide drop-shadow-[0_0_30px_rgba(244,114,182,0.4)]"
-            style={{ fontFamily: "'Playfair Display', 'DM Serif Display', 'Cormorant Garamond', Georgia, serif" }}
-          >
+      {/* Contenu principal centré */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-center">
+        {/* En-tête : Our Memories */}
+        <div className="text-center space-y-2 sm:space-y-3 pt-4 sm:pt-6">
+          <h1 className="font-serif-luxury text-4xl sm:text-6xl lg:text-7xl font-normal tracking-wide text-white drop-shadow-[0_0_35px_rgba(255,255,255,0.7)]">
             Our Memories
           </h1>
+
           <div className="flex items-center justify-center gap-2 text-xs sm:text-sm font-sans tracking-[0.3em] uppercase text-rose-200/70">
             <span className="text-amber-300 text-xs">✦</span>
             <span>every moment captured in love</span>
@@ -167,26 +304,53 @@ export const OurMemoriesGalleryScreen: React.FC<OurMemoriesGalleryScreenProps> =
           </div>
         </div>
 
-        {/* Grille de Polaroids : 4 colonnes sur desktop, 2 colonnes sur mobile comme sur l'image */}
+        {/* Grille de Polaroids : 4 colonnes sur desktop, 2 colonnes sur mobile */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-7 pt-6 sm:pt-10 px-1 sm:px-4">
           {GALLERY_PHOTOS.map((photo) => {
             const isLandscape = photo.id === 6;
+            const isVideo = photo.type === 'video';
+
             return (
               <div
                 key={photo.id}
                 onClick={() => setActivePhoto(photo)}
                 className={`group cursor-pointer bg-white/95 p-2 sm:p-3 pb-6 sm:pb-8 rounded-xs shadow-[0_12px_30px_rgba(0,0,0,0.65)] hover:shadow-[0_22px_50px_rgba(244,114,182,0.5)] ${photo.rotation} hover:rotate-0 hover:scale-105 active:scale-95 transition-all duration-300 flex flex-col justify-between`}
               >
-                {/* Image dans le cadre Polaroid (affichée entièrement sans coupure) */}
+                {/* Image ou vidéo dans le cadre Polaroid */}
                 <div className="relative aspect-[4/5] bg-slate-950 overflow-hidden rounded-xs flex items-center justify-center">
-                  <img
-                    src={photo.url}
-                    alt={photo.title}
-                    className={`w-full h-full ${isLandscape ? 'object-contain' : 'object-cover'} group-hover:scale-105 transition-transform duration-500`}
-                  />
-                  <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <ZoomIn className="w-6 h-6 text-white drop-shadow-md" />
-                  </div>
+                  {isVideo ? (
+                    <>
+                      <video
+                        src={photo.url}
+                        preload="metadata"
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      {/* Badge vidéo en haut à droite */}
+                      <div className="absolute top-2 right-2 bg-black/60 backdrop-blur-xs text-rose-200 text-[10px] font-mono px-2 py-0.5 rounded-full flex items-center gap-1 shadow-md z-10 pointer-events-none">
+                        <Play className="w-2.5 h-2.5 fill-rose-300 text-rose-300" />
+                        <span>Vidéo</span>
+                      </div>
+                      {/* Bouton de lecture au centre */}
+                      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                        <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-rose-500/85 text-white flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-rose-500 transition-all">
+                          <Play className="w-4 h-4 sm:w-5 sm:h-5 ml-0.5 fill-white text-white" />
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <img
+                        src={photo.url}
+                        alt={photo.title}
+                        className={`w-full h-full ${isLandscape ? 'object-contain' : 'object-cover'} group-hover:scale-105 transition-transform duration-500`}
+                      />
+                      <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <ZoomIn className="w-6 h-6 text-white drop-shadow-md" />
+                      </div>
+                    </>
+                  )}
                 </div>
 
                 {/* Légende manuscrite au bas du Polaroid */}
@@ -205,14 +369,14 @@ export const OurMemoriesGalleryScreen: React.FC<OurMemoriesGalleryScreenProps> =
               onClick={onGoToEnd}
               className="group inline-flex items-center justify-center gap-3 px-10 sm:px-14 py-3.5 sm:py-4.5 rounded-full bg-[#f0859a] hover:bg-[#e87087] active:scale-95 text-white font-semibold text-xs sm:text-sm lg:text-base tracking-[0.22em] uppercase shadow-[0_0_30px_rgba(240,133,154,0.7)] hover:shadow-[0_0_45px_rgba(240,133,154,0.95)] hover:scale-105 transition-all duration-300 cursor-pointer"
             >
-              <span>UN DERNIER MOT POUR TOI 🤍</span>
+              <span>UN DERNIER MOT POUR TOI 💖</span>
               <span className="group-hover:translate-x-1.5 transition-transform text-base lg:text-lg">→</span>
             </button>
           </div>
         )}
       </div>
 
-      {/* Modal d'aperçu d'une photo zoomée (Affichage 100% complet de la photo sans aucun recadrage) */}
+      {/* Modal d'aperçu d'une photo ou vidéo zoomée (Affichage 100% complet sans aucun recadrage) */}
       {activePhoto && (
         <div
           className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-300 select-none"
@@ -229,13 +393,24 @@ export const OurMemoriesGalleryScreen: React.FC<OurMemoriesGalleryScreenProps> =
               <X className="w-5 h-5" />
             </button>
 
-            {/* Photo entière 100% visible sans coupure ni rognage */}
+            {/* Média entier 100% visible sans coupure ni rognage */}
             <div className="relative overflow-hidden rounded-xs bg-slate-950 flex items-center justify-center max-h-[75vh]">
-              <img
-                src={activePhoto.url}
-                alt={activePhoto.title}
-                className="max-h-[75vh] w-auto max-w-full object-contain block mx-auto"
-              />
+              {activePhoto.type === 'video' ? (
+                <video
+                  src={activePhoto.url}
+                  controls
+                  autoPlay
+                  playsInline
+                  loop
+                  className="max-h-[75vh] w-auto max-w-full object-contain block mx-auto"
+                />
+              ) : (
+                <img
+                  src={activePhoto.url}
+                  alt={activePhoto.title}
+                  className="max-h-[75vh] w-auto max-w-full object-contain block mx-auto"
+                />
+              )}
             </div>
 
             <div className="pt-4 text-center space-y-1 shrink-0">
@@ -252,4 +427,3 @@ export const OurMemoriesGalleryScreen: React.FC<OurMemoriesGalleryScreenProps> =
     </div>
   );
 };
-
