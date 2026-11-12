@@ -658,7 +658,7 @@ const TypewriterMessage: React.FC<TypewriterMessageProps> = ({ gift, onClose }) 
 
           {/* Badge élégant pour l'expéditeur */}
           <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 lg:px-5 py-1 sm:py-1.5 lg:py-2 rounded-full bg-gradient-to-r from-rose-500/25 via-pink-500/20 to-rose-400/15 border border-rose-300/40 text-rose-100 text-xs sm:text-sm shadow-[0_0_15px_rgba(244,114,182,0.25)] self-start sm:self-auto backdrop-blur-sm">
-            <span className="text-amber-300 text-xs sm:text-sm">✨</span>
+            <span className="text-amber-300 text-xs sm:text-sm"></span>
             <span className="text-rose-200/80 font-sans text-[11px] sm:text-xs lg:text-sm uppercase tracking-wider">De la part de</span>
             <strong className="text-white font-semibold font-serif-luxury tracking-wide text-xs sm:text-sm lg:text-base">{gift.name}</strong>
           </div>
@@ -672,7 +672,7 @@ const TypewriterMessage: React.FC<TypewriterMessageProps> = ({ gift, onClose }) 
         >
           {isLongLetter ? (
             /* Mise en page style lettre manuscrite élégante */
-            <div className="space-y-4 lg:space-y-6 text-rose-50/95 font-sans pb-4 select-text">
+            <div className="space-y-4 lg:space-y-6 text-rose-50/95 font-sans pb-4 select-none">
               {paragraphs.map((p, idx) => {
                 const isCurrentParagraph = idx === paragraphs.length - 1;
                 const cursor = isCurrentParagraph && isTyping ? (
