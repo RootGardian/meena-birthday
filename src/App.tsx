@@ -21,14 +21,11 @@ type ScreenState = 'countdown' | 'gifts' | 'special-day' | 'memories-gallery' | 
 export function App() {
   const [currentScreen, setCurrentScreen] = useState<ScreenState>('countdown');
 
-  // Préchargement en arrière-plan pendant que l'utilisateur regarde le compte à rebours
+  // Préchargement léger de l'écran suivant uniquement quand Safari est au repos
   useEffect(() => {
     const prefetchTimer = setTimeout(() => {
       import('./components/birthday/ThirtyGiftsScreen');
-      import('./components/birthday/OurMemoryScreen');
-      import('./components/birthday/OurMemoriesGalleryScreen');
-      import('./components/birthday/EndingScreen');
-    }, 1200);
+    }, 3500);
 
     return () => clearTimeout(prefetchTimer);
   }, []);

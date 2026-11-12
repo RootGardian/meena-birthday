@@ -10,6 +10,8 @@ export const MusicPlayer: React.FC = () => {
 
     audio.volume = 0.85;
 
+    let hasInteracted = false;
+
     // Fonction robuste pour démarrer la lecture
     const startAudio = () => {
       if (!shouldPlayRef.current) return;
@@ -18,11 +20,9 @@ export const MusicPlayer: React.FC = () => {
       });
     };
 
-    // Tenter de jouer immédiatement
-    startAudio();
-
     // Déverrouillage immédiat au premier geste utilisateur (tactile, clic, scroll ou appui)
     const unlockAudio = () => {
+      hasInteracted = true;
       startAudio();
       window.removeEventListener('click', unlockAudio);
       window.removeEventListener('touchstart', unlockAudio);
@@ -70,12 +70,12 @@ export const MusicPlayer: React.FC = () => {
     audio.addEventListener('pause', handlePause);
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
-    // Watchdog régulier pour s'assurer que la musique ne s'arrête jamais en cours de route
+    // Watchdog régulier actif uniquement après interaction utilisateur
     const watchdog = setInterval(() => {
-      if (shouldPlayRef.current && audio.paused && !audio.ended) {
+      if (hasInteracted && shouldPlayRef.current && audio.paused && !audio.ended) {
         audio.play().catch(() => {});
       }
-    }, 1500);
+    }, 2000);
 
     return () => {
       window.removeEventListener('click', unlockAudio);

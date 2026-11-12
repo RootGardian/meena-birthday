@@ -69,9 +69,15 @@ export const CountdownScreen: React.FC<CountdownScreenProps> = ({ onUnlock }) =>
       {/* Background radial atmosphere & bokeh */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#38202d] via-[#1c121b] to-[#0d090d]" />
       
-      {/* Blurred glowing spots */}
-      <div className="absolute top-1/4 left-1/3 w-80 h-80 bg-rose-500/10 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
+      {/* Halo lumineux fluide zéro-coût GPU optimisé Safari */}
+      <div
+        className="absolute top-1/4 left-1/3 w-80 h-80 rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(244, 63, 94, 0.12) 0%, transparent 70%)' }}
+      />
+      <div
+        className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(245, 158, 11, 0.1) 0%, transparent 70%)' }}
+      />
 
       {/* Pétales de rose réalistes flottants */}
       <FallingPetals count={22} />

@@ -165,10 +165,19 @@ export const OurMemoryScreen: React.FC<OurMemoryScreenProps> = ({ onGoToGallery 
 
       {/* Bokeh cœurs lumineux en arrière-plan */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        {/* Grands cœurs floutés créant l'effet bokeh lumineux de l'image */}
-        <div className="absolute top-[18%] left-[25%] w-72 h-72 rounded-full bg-rose-500/15 blur-[90px]" />
-        <div className="absolute top-[40%] right-[22%] w-80 h-80 rounded-full bg-pink-500/15 blur-[100px]" />
-        <div className="absolute bottom-[15%] left-[35%] w-96 h-96 rounded-full bg-amber-500/10 blur-[110px]" />
+        {/* Grands cœurs floutés créant l'effet bokeh lumineux de l'image (optimisé Safari zéro GPU lag) */}
+        <div
+          className="absolute top-[18%] left-[25%] w-72 h-72 rounded-full"
+          style={{ background: 'radial-gradient(circle, rgba(244, 63, 94, 0.15) 0%, transparent 70%)' }}
+        />
+        <div
+          className="absolute top-[40%] right-[22%] w-80 h-80 rounded-full"
+          style={{ background: 'radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, transparent 70%)' }}
+        />
+        <div
+          className="absolute bottom-[15%] left-[35%] w-96 h-96 rounded-full"
+          style={{ background: 'radial-gradient(circle, rgba(245, 158, 11, 0.1) 0%, transparent 70%)' }}
+        />
 
         {/* Cœurs bokeh doux semi-transparents */}
         {[

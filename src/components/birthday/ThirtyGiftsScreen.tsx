@@ -854,12 +854,18 @@ export const ThirtyGiftsScreen: React.FC<ThirtyGiftsScreenProps> = ({ onGoToOurM
       {/* Background radial ambiance */}
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#38202d] via-[#1c121b] to-[#0d090d] pointer-events-none" />
 
-      {/* Blurred glowing spots */}
-      <div className="fixed top-1/4 left-1/3 w-80 h-80 bg-rose-500/10 rounded-full blur-[100px] pointer-events-none" />
-      <div className="fixed bottom-1/4 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
+      {/* Halo lumineux fluide zéro-coût GPU optimisé Safari */}
+      <div
+        className="fixed top-1/4 left-1/3 w-80 h-80 rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(244, 63, 94, 0.12) 0%, transparent 70%)' }}
+      />
+      <div
+        className="fixed bottom-1/4 right-1/4 w-96 h-96 rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(245, 158, 11, 0.1) 0%, transparent 70%)' }}
+      />
 
       {/* Pétales de rose réalistes flottants */}
-      <FallingPetals count={24} />
+      <FallingPetals count={16} />
 
       {/* Content Container */}
       <div className="relative z-10 max-w-6xl xl:max-w-7xl 2xl:max-w-[1500px] w-full text-center space-y-6 sm:space-y-8 lg:space-y-10 pt-12 sm:pt-16 pb-20 animate-in fade-in zoom-in-95 duration-700">
@@ -902,8 +908,8 @@ export const ThirtyGiftsScreen: React.FC<ThirtyGiftsScreenProps> = ({ onGoToOurM
                 <div className="relative w-14 sm:w-16 md:w-20 lg:w-24 xl:w-28 h-14 sm:h-16 md:h-20 lg:h-24 xl:h-28 flex items-center justify-center mb-2 lg:mb-3">
                   {/* Glowing bow on top */}
                   <div className="absolute -top-1 lg:-top-1.5 left-1/2 -translate-x-1/2 flex items-center justify-center z-10">
-                    <div className="w-4 sm:w-5 lg:w-6 xl:w-7 h-2 sm:h-2.5 lg:h-3 xl:h-3.5 rounded-full border border-rose-300/80 bg-rose-400/30 backdrop-blur-xs -mr-1 transform -rotate-12 shadow-[0_0_8px_rgba(244,114,182,0.6)]" />
-                    <div className="w-4 sm:w-5 lg:w-6 xl:w-7 h-2 sm:h-2.5 lg:h-3 xl:h-3.5 rounded-full border border-rose-300/80 bg-rose-400/30 backdrop-blur-xs -ml-1 transform rotate-12 shadow-[0_0_8px_rgba(244,114,182,0.6)]" />
+                    <div className="w-4 sm:w-5 lg:w-6 xl:w-7 h-2 sm:h-2.5 lg:h-3 xl:h-3.5 rounded-full border border-rose-300/80 bg-rose-400/40 -mr-1 transform -rotate-12 shadow-[0_0_8px_rgba(244,114,182,0.6)]" />
+                    <div className="w-4 sm:w-5 lg:w-6 xl:w-7 h-2 sm:h-2.5 lg:h-3 xl:h-3.5 rounded-full border border-rose-300/80 bg-rose-400/40 -ml-1 transform rotate-12 shadow-[0_0_8px_rgba(244,114,182,0.6)]" />
                   </div>
 
                   {/* Gift Box Container */}

@@ -117,13 +117,19 @@ export const OurMemoriesGalleryScreen: React.FC<OurMemoriesGalleryScreenProps> =
       {/* Ambiance nuit étoilée avec dégradé subtil bordeaux comme sur l'image */}
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#2d1124] via-[#160817] to-[#0a030b] pointer-events-none" />
 
-      {/* Cœurs et orbes bokeh lumineux */}
-      <div className="fixed top-1/4 left-1/4 w-96 h-96 bg-rose-500/10 rounded-full blur-[130px] pointer-events-none" />
-      <div className="fixed bottom-1/3 right-1/4 w-96 h-96 bg-pink-500/10 rounded-full blur-[140px] pointer-events-none" />
+      {/* Halo lumineux fluide zéro-coût GPU optimisé Safari */}
+      <div
+        className="fixed top-1/4 left-1/4 w-96 h-96 rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(244, 63, 94, 0.12) 0%, transparent 70%)' }}
+      />
+      <div
+        className="fixed bottom-1/3 right-1/4 w-96 h-96 rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(236, 72, 153, 0.12) 0%, transparent 70%)' }}
+      />
 
       {/* Étoiles scintillantes de fond comme sur l'image */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        {Array.from({ length: 45 }).map((_, i) => (
+        {Array.from({ length: 25 }).map((_, i) => (
           <span
             key={i}
             className="absolute rounded-full bg-white animate-pulse"

@@ -56,13 +56,19 @@ export const EndingScreen: React.FC<EndingScreenProps> = () => {
       {/* Fond violet / bordeaux galaxie avec dégradé subtil comme sur les 3 images */}
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#38162f] via-[#1e0d1f] to-[#0d050e] pointer-events-none" />
 
-      {/* Bokeh lumineux rose et doré */}
-      <div className="fixed top-1/3 left-1/3 w-96 h-96 bg-rose-500/15 rounded-full blur-[130px] pointer-events-none" />
-      <div className="fixed bottom-1/3 right-1/3 w-96 h-96 bg-pink-500/15 rounded-full blur-[140px] pointer-events-none" />
+      {/* Halo lumineux fluide zéro-coût GPU optimisé Safari */}
+      <div
+        className="fixed top-1/3 left-1/3 w-96 h-96 rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(244, 63, 94, 0.14) 0%, transparent 70%)' }}
+      />
+      <div
+        className="fixed bottom-1/3 right-1/3 w-96 h-96 rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(236, 72, 153, 0.14) 0%, transparent 70%)' }}
+      />
 
       {/* Étoiles scintillantes douces comme sur les photos */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        {Array.from({ length: 40 }).map((_, i) => (
+        {Array.from({ length: 25 }).map((_, i) => (
           <span
             key={i}
             className="absolute rounded-full bg-white animate-pulse"
@@ -80,7 +86,7 @@ export const EndingScreen: React.FC<EndingScreenProps> = () => {
       </div>
 
       {/* Pétales de rose réalistes flottants */}
-      <FallingPetals count={22} />
+      <FallingPetals count={16} />
 
       {/* Contenu central majestueux : reproduction exacte des 3 images */}
       <div className="relative z-10 max-w-4xl w-full text-center space-y-6 sm:space-y-8 animate-in fade-in zoom-in-95 duration-1000 px-4">
