@@ -26,15 +26,23 @@ import img18 from '../../assets/WhatsApp Image 2026-11-12 at 13.21.18 (1).jpeg';
 import img19 from '../../assets/WhatsApp Image 2026-11-12 at 13.21.19.jpeg';
 import img20 from '../../assets/WhatsApp Image 2026-11-12 at 13.28.21.jpeg';
 
-// Nouvelles vidéos ajoutées
+// Nouvelles vidéos ajoutées et leurs vignettes d'aperçu pour éviter tout écran noir
 import vid1 from '../../assets/WhatsApp Video 2026-11-12 at 13.08.53.mp4';
+import vid1Thumb from '../../assets/vid1-thumb.jpg';
+
 import vid2 from '../../assets/WhatsApp Video 2026-11-12 at 13.20.49.mp4';
+import vid2Thumb from '../../assets/vid2-thumb.jpg';
+
 import vid3 from '../../assets/WhatsApp Video 2026-11-12 at 13.20.50.mp4';
+import vid3Thumb from '../../assets/vid3-thumb.jpg';
+
 import vid4 from '../../assets/WhatsApp Video 2026-11-12 at 13.20.52.mp4';
+import vid4Thumb from '../../assets/vid4-thumb.jpg';
 
 interface GalleryPolaroid {
   id: number;
   url: string;
+  poster?: string;
   type?: 'image' | 'video';
   title: string;
   caption: string;
@@ -53,6 +61,7 @@ const GALLERY_PHOTOS: GalleryPolaroid[] = [
   {
     id: 201,
     url: vid1,
+    poster: vid1Thumb,
     type: 'video',
     title: 'Rires en Mouvement ✨',
     caption: 'Ce rire communicatif qu’on adore tant entendre !',
@@ -85,6 +94,7 @@ const GALLERY_PHOTOS: GalleryPolaroid[] = [
   {
     id: 202,
     url: vid2,
+    poster: vid2Thumb,
     type: 'video',
     title: 'Moments Vivants 💕',
     caption: 'La joie de vivre et la complicité à l’état pur.',
@@ -125,6 +135,7 @@ const GALLERY_PHOTOS: GalleryPolaroid[] = [
   {
     id: 203,
     url: vid3,
+    poster: vid3Thumb,
     type: 'video',
     title: 'Souvenir Précieux 🎥',
     caption: 'Un instant magique capturé pour toujours.',
@@ -165,6 +176,7 @@ const GALLERY_PHOTOS: GalleryPolaroid[] = [
   {
     id: 204,
     url: vid4,
+    poster: vid4Thumb,
     type: 'video',
     title: 'Fête & Énergie 🌟',
     caption: 'L’ambiance et la fête avec notre reine Meena !',
@@ -316,25 +328,24 @@ export const OurMemoriesGalleryScreen: React.FC<OurMemoriesGalleryScreenProps> =
                 onClick={() => setActivePhoto(photo)}
                 className={`group cursor-pointer bg-white/95 p-2 sm:p-3 pb-6 sm:pb-8 rounded-xs shadow-[0_12px_30px_rgba(0,0,0,0.65)] hover:shadow-[0_22px_50px_rgba(244,114,182,0.5)] ${photo.rotation} hover:rotate-0 hover:scale-105 active:scale-95 transition-all duration-300 flex flex-col justify-between`}
               >
-                {/* Image ou vidéo dans le cadre Polaroid */}
+                {/* Image ou vignette vidéo dans le cadre Polaroid (jamais d'écran noir !) */}
                 <div className="relative aspect-[4/5] bg-slate-950 overflow-hidden rounded-xs flex items-center justify-center">
                   {isVideo ? (
                     <>
-                      <video
-                        src={photo.url}
-                        preload="metadata"
-                        muted
-                        playsInline
+                      <img
+                        src={photo.poster}
+                        alt={photo.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
                       />
                       {/* Badge vidéo en haut à droite */}
                       <div className="absolute top-2 right-2 bg-black/60 backdrop-blur-xs text-rose-200 text-[10px] font-mono px-2 py-0.5 rounded-full flex items-center gap-1 shadow-md z-10 pointer-events-none">
                         <Play className="w-2.5 h-2.5 fill-rose-300 text-rose-300" />
                         <span>Vidéo</span>
                       </div>
-                      {/* Bouton de lecture au centre */}
-                      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                        <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-rose-500/85 text-white flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-rose-500 transition-all">
+                      {/* Bouton de lecture au centre avec lueur rose */}
+                      <div className="absolute inset-0 bg-black/25 group-hover:bg-black/15 transition-colors flex items-center justify-center">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-rose-500/90 text-white flex items-center justify-center shadow-[0_0_20px_rgba(244,63,94,0.6)] group-hover:scale-110 group-hover:bg-rose-500 transition-all">
                           <Play className="w-4 h-4 sm:w-5 sm:h-5 ml-0.5 fill-white text-white" />
                         </div>
                       </div>
@@ -345,6 +356,7 @@ export const OurMemoriesGalleryScreen: React.FC<OurMemoriesGalleryScreenProps> =
                         src={photo.url}
                         alt={photo.title}
                         className={`w-full h-full ${isLandscape ? 'object-contain' : 'object-cover'} group-hover:scale-105 transition-transform duration-500`}
+                        loading="lazy"
                       />
                       <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                         <ZoomIn className="w-6 h-6 text-white drop-shadow-md" />
@@ -398,6 +410,7 @@ export const OurMemoriesGalleryScreen: React.FC<OurMemoriesGalleryScreenProps> =
               {activePhoto.type === 'video' ? (
                 <video
                   src={activePhoto.url}
+                  poster={activePhoto.poster}
                   controls
                   autoPlay
                   playsInline
