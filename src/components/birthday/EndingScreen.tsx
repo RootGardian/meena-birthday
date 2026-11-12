@@ -142,6 +142,19 @@ export const EndingScreen: React.FC<EndingScreenProps> = ({ onRestart }) => {
           </div>
         )}
 
+        {/* Bouton Recommencer le voyage pour revivre l'expérience */}
+        {onRestart && (
+          <div className="pt-6 sm:pt-10 flex items-center justify-center animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <button
+              onClick={onRestart}
+              className="group inline-flex items-center gap-2.5 px-6 sm:px-8 py-2.5 sm:py-3.5 rounded-full bg-white/[0.06] hover:bg-rose-500/25 border border-white/25 hover:border-rose-300 text-rose-100/85 hover:text-white text-xs sm:text-sm tracking-[0.2em] uppercase transition-all duration-300 shadow-[0_0_20px_rgba(244,114,182,0.15)] hover:shadow-[0_0_35px_rgba(244,114,182,0.45)] hover:scale-105 active:scale-95 cursor-pointer backdrop-blur-sm"
+            >
+              <RotateCcw className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-rose-300 group-hover:-rotate-90 transition-transform duration-300" />
+              <span>Recommencer le voyage ✨</span>
+            </button>
+          </div>
+        )}
+
       </div>
     </div>
   );
