@@ -77,8 +77,16 @@ export const MusicPlayer: React.FC = () => {
       audio.play().catch(() => {});
     };
 
+    // Recommencer la musique depuis le début lors du redémarrage du voyage
+    const onRestartMusic = () => {
+      shouldPlayRef.current = true;
+      audio.currentTime = 0;
+      audio.play().catch(() => {});
+    };
+
     window.addEventListener('birthday-pause-music', onPauseMusic);
     window.addEventListener('birthday-resume-music', onResumeMusic);
+    window.addEventListener('birthday-restart-music', onRestartMusic);
 
     audio.addEventListener('ended', handleEnded);
     audio.addEventListener('pause', handlePause);
@@ -99,6 +107,7 @@ export const MusicPlayer: React.FC = () => {
       window.removeEventListener('scroll', unlockAudio, true);
       window.removeEventListener('birthday-pause-music', onPauseMusic);
       window.removeEventListener('birthday-resume-music', onResumeMusic);
+      window.removeEventListener('birthday-restart-music', onRestartMusic);
       audio.removeEventListener('ended', handleEnded);
       audio.removeEventListener('pause', handlePause);
       document.removeEventListener('visibilitychange', handleVisibilityChange);

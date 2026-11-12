@@ -10,6 +10,22 @@ type ScreenState = 'countdown' | 'gifts' | 'special-day' | 'memories-gallery' | 
 
 export function App() {
   const [currentScreen, setCurrentScreen] = useState<ScreenState>('countdown');
+  const [journeyKey, setJourneyKey] = useState(0);
+
+  const handleRestartJourney = () => {
+    try {
+      localStorage.clear();
+      sessionStorage.clear();
+    } catch {
+      // ignore
+    }
+    // Redémarrer la musique au début
+    window.dispatchEvent(new CustomEvent('birthday-restart-music'));
+    // Réinitialiser complètement les composants et la mémoire des cadeaux ouverts
+    setJourneyKey((k) => k + 1);
+    setCurrentScreen('countdown');
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  };
 
   return (
     <div className="min-h-screen bg-[#171018] text-white">
@@ -17,27 +33,36 @@ export function App() {
       <MusicPlayer />
 
       {currentScreen === 'countdown' && (
-        <CountdownScreen onUnlock={() => setCurrentScreen('gifts')} />
+        <CountdownScreen
+          key={`countdown-${journeyKey}`}
+          onUnlock={() => setCurrentScreen('gifts')}
+        />
       )}
       {currentScreen === 'gifts' && (
         <ThirtyGiftsScreen
+          key={`gifts-${journeyKey}`}
           onBackToCountdown={() => setCurrentScreen('countdown')}
           onGoToOurMemory={() => setCurrentScreen('special-day')}
         />
       )}
       {currentScreen === 'special-day' && (
         <OurMemoryScreen
+          key={`memory-${journeyKey}`}
           onGoToGallery={() => setCurrentScreen('memories-gallery')}
         />
       )}
       {currentScreen === 'memories-gallery' && (
         <OurMemoriesGalleryScreen
+          key={`gallery-${journeyKey}`}
           onBack={() => setCurrentScreen('special-day')}
           onGoToEnd={() => setCurrentScreen('ending')}
         />
       )}
       {currentScreen === 'ending' && (
-        <EndingScreen onRestart={() => setCurrentScreen('countdown')} />
+        <EndingScreen
+          key={`ending-${journeyKey}`}
+          onRestart={handleRestartJourney}
+        />
       )}
 
       {/* Signature discrète en bas à droite sur chaque page */}
