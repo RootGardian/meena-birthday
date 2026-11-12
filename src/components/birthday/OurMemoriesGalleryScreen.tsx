@@ -3,7 +3,7 @@ import confetti from 'canvas-confetti';
 import { X, ZoomIn } from 'lucide-react';
 import { FallingPetals } from './FallingPetals';
 
-// Import des 10 vraies photos de Meena depuis le dossier assets
+// Import des vraies photos de Meena depuis le dossier assets
 import img1 from '../../assets/WhatsApp Image 2026-11-11 at 23.50.08.jpeg';
 import img2 from '../../assets/WhatsApp Image 2026-11-11 at 23.50.08 (1).jpeg';
 import img3 from '../../assets/WhatsApp Image 2026-11-11 at 23.50.08 (2).jpeg';
@@ -13,6 +13,7 @@ import img7 from '../../assets/WhatsApp Image 2026-11-11 at 23.50.09 (1).jpeg';
 import img8 from '../../assets/WhatsApp Image 2026-11-11 at 23.50.09 (2).jpeg';
 import img9 from '../../assets/WhatsApp Image 2026-11-11 at 23.50.09 (3).jpeg';
 import img10 from '../../assets/WhatsApp Image 2026-11-11 at 23.50.09 (4).jpeg';
+import img11 from '../../assets/WhatsApp Image 2026-11-12 at 08.38.28.jpeg';
 
 interface GalleryPolaroid {
   id: number;
@@ -29,6 +30,13 @@ const GALLERY_PHOTOS: GalleryPolaroid[] = [
     title: 'Complicité Éternelle',
     caption: 'Des rires gravés dans nos cœurs pour l’éternité.',
     rotation: '-rotate-2',
+  },
+  {
+    id: 11,
+    url: img11,
+    title: 'Complicité Rayonnante',
+    caption: 'Une beauté et une complicité uniques qui illuminent chaque instant.',
+    rotation: 'rotate-2',
   },
   {
     id: 2,

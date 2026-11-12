@@ -4,7 +4,7 @@ import { X, ZoomIn } from 'lucide-react';
 import { FallingPetals } from './FallingPetals';
 
 // Import des 6 vraies photos de Meena depuis le dossier assets (3 à gauche, 3 à droite)
-import photoLeft1 from '../../assets/WhatsApp Image 2026-11-11 at 23.50.08.jpeg';
+import photoLeft1 from '../../assets/WhatsApp Image 2026-11-12 at 08.38.28.jpeg';
 import photoLeft2 from '../../assets/WhatsApp Image 2026-11-11 at 23.50.08 (1).jpeg';
 import photoLeft3 from '../../assets/WhatsApp Image 2026-11-11 at 23.50.08 (2).jpeg';
 
