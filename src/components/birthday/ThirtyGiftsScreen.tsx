@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import confetti from 'canvas-confetti';
-import { Heart } from 'lucide-react';
 import { FallingPetals } from './FallingPetals';
 
 interface ThirtyGiftsScreenProps {
@@ -821,7 +820,7 @@ const TypewriterMessage: React.FC<TypewriterMessageProps> = ({ gift, onClose }) 
   );
 };
 
-export const ThirtyGiftsScreen: React.FC<ThirtyGiftsScreenProps> = ({ onBackToCountdown, onGoToOurMemory }) => {
+export const ThirtyGiftsScreen: React.FC<ThirtyGiftsScreenProps> = ({ onGoToOurMemory }) => {
   const [openedGifts, setOpenedGifts] = useState<number[]>([]);
   const [activeGiftModal, setActiveGiftModal] = useState<GiftItem | null>(null);
 

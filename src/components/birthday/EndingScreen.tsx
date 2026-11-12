@@ -15,7 +15,6 @@ interface EndingScreenProps {
 export const EndingScreen: React.FC<EndingScreenProps> = () => {
   const [titleIndex, setTitleIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
-  const [isTyping, setIsTyping] = useState(true);
 
   // Confetti délicat au chargement
   useEffect(() => {
@@ -30,7 +29,6 @@ export const EndingScreen: React.FC<EndingScreenProps> = () => {
   useEffect(() => {
     const targetTitle = TITLES[titleIndex];
     let currentChar = 0;
-    setIsTyping(true);
     setDisplayedText('');
 
     // Vitesse d'écriture lettre par lettre
@@ -39,7 +37,6 @@ export const EndingScreen: React.FC<EndingScreenProps> = () => {
       setDisplayedText(targetTitle.slice(0, currentChar));
       if (currentChar >= targetTitle.length) {
         clearInterval(typeInterval);
-        setIsTyping(false);
       }
     }, 45);
 

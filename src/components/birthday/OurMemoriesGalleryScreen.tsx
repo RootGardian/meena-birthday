@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
-import { X, ZoomIn, Heart, Sparkles } from 'lucide-react';
+import { X, ZoomIn } from 'lucide-react';
 import { FallingPetals } from './FallingPetals';
 
 // Import des 10 vraies photos de Meena depuis le dossier assets
