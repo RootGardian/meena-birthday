@@ -94,7 +94,7 @@ export const MusicPlayer: React.FC = () => {
     <audio
       ref={audioRef}
       loop
-      preload="auto"
+      preload="none"
       playsInline
       className="hidden pointer-events-none"
     >

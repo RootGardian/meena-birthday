@@ -80,7 +80,9 @@ export const FallingPetals: React.FC<{ count?: number }> = ({ count = 20 }) => {
               height: `${p.height}px`,
               top: '-8%',
               opacity: p.opacity,
-              filter: 'drop-shadow(0 3px 8px rgba(225, 29, 72, 0.35)) drop-shadow(0 1px 3px rgba(0,0,0,0.3))',
+              filter: 'drop-shadow(0 2px 5px rgba(225, 29, 72, 0.3))',
+              transform: 'translateZ(0)',
+              WebkitTransform: 'translateZ(0)',
             }}
           >
             <svg
