@@ -37,7 +37,7 @@ export function App() {
         />
       )}
       {currentScreen === 'ending' && (
-        <EndingScreen />
+        <EndingScreen onRestart={() => setCurrentScreen('countdown')} />
       )}
 
       {/* Signature discrète en bas à droite sur chaque page */}

@@ -820,14 +820,32 @@ const TypewriterMessage: React.FC<TypewriterMessageProps> = ({ gift, onClose }) 
   );
 };
 
+const STORAGE_KEY = 'meena_birthday_opened_gifts';
+
 export const ThirtyGiftsScreen: React.FC<ThirtyGiftsScreenProps> = ({ onGoToOurMemory }) => {
-  const [openedGifts, setOpenedGifts] = useState<number[]>([]);
+  const [openedGifts, setOpenedGifts] = useState<number[]>(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) return parsed;
+      }
+    } catch {
+      // ignore
+    }
+    return [];
+  });
   const [activeGiftModal, setActiveGiftModal] = useState<GiftItem | null>(null);
 
   const handleOpenBox = (gift: GiftItem) => {
     if (!openedGifts.includes(gift.id)) {
       const nextOpened = [...openedGifts, gift.id];
       setOpenedGifts(nextOpened);
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(nextOpened));
+      } catch {
+        // ignore
+      }
 
       // Si tous les cadeaux viennent d'être ouverts, lancer un feu d'artifice de confettis
       if (nextOpened.length === GIFTS_LIST.length) {

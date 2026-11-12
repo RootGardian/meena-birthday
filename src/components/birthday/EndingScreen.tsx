@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
+import { RotateCcw } from 'lucide-react';
 import { FallingPetals } from './FallingPetals';
 
 const TITLES = [
@@ -12,7 +13,7 @@ interface EndingScreenProps {
   onRestart?: () => void;
 }
 
-export const EndingScreen: React.FC<EndingScreenProps> = () => {
+export const EndingScreen: React.FC<EndingScreenProps> = ({ onRestart }) => {
   const [titleIndex, setTitleIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
 
@@ -90,7 +91,7 @@ export const EndingScreen: React.FC<EndingScreenProps> = () => {
 
       {/* Contenu central majestueux : reproduction exacte des 3 images */}
       <div className="relative z-10 max-w-4xl w-full text-center space-y-6 sm:space-y-8 animate-in fade-in zoom-in-95 duration-1000 px-4">
-        
+
         {/* Titre en gras qui change toutes les 5 secondes avec curseur clignotant | */}
         <div className="min-h-[90px] sm:min-h-[140px] md:min-h-[160px] flex items-center justify-center">
           <h1
@@ -127,6 +128,19 @@ export const EndingScreen: React.FC<EndingScreenProps> = () => {
             <span className="text-pink-300 inline-block text-sm sm:text-base not-italic">🤍</span>
           </p>
         </div>
+
+        {/* Bouton Recommencer le voyage pour revivre l'expérience */}
+        {onRestart && (
+          <div className="pt-6 sm:pt-10 flex items-center justify-center animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <button
+              onClick={onRestart}
+              className="group inline-flex items-center gap-2.5 px-6 sm:px-8 py-2.5 sm:py-3.5 rounded-full bg-white/[0.06] hover:bg-rose-500/25 border border-white/25 hover:border-rose-300 text-rose-100/85 hover:text-white text-xs sm:text-sm tracking-[0.2em] uppercase transition-all duration-300 shadow-[0_0_20px_rgba(244,114,182,0.15)] hover:shadow-[0_0_35px_rgba(244,114,182,0.45)] hover:scale-105 active:scale-95 cursor-pointer backdrop-blur-sm"
+            >
+              <RotateCcw className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-rose-300 group-hover:-rotate-90 transition-transform duration-300" />
+              <span>Recommencer le voyage </span>
+            </button>
+          </div>
+        )}
 
       </div>
     </div>
