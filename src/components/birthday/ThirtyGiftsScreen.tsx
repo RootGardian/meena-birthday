@@ -436,8 +436,8 @@ Pape Babacar Diaïté`
   },
   {
     id: 24,
-    name: 'Aziz Mdodj',
-    title: 'Aziz Mdodj',
+    name: 'Zizou',
+    title: 'Zizou',
     message: `Mon amour,
 
 Je ne sais même pas vraiment par où commencer, mais j’avais envie de prendre le temps de t’écrire quelques mots qui viennent sincèrement de mon cœur.
@@ -711,7 +711,7 @@ const VoiceNotePlayer: React.FC<VoiceNotePlayerProps> = ({ audioSrc, senderName 
       window.dispatchEvent(new CustomEvent('birthday-resume-music'));
     } else {
       window.dispatchEvent(new CustomEvent('birthday-pause-music'));
-      audio.play().catch(() => {});
+      audio.play().catch(() => { });
       setIsPlaying(true);
     }
   };
@@ -771,9 +771,8 @@ const VoiceNotePlayer: React.FC<VoiceNotePlayerProps> = ({ audioSrc, senderName 
               return (
                 <div
                   key={i}
-                  className={`flex-1 rounded-full transition-all duration-150 ${
-                    isPassed ? 'bg-rose-400 shadow-[0_0_6px_rgba(244,114,182,0.8)]' : 'bg-white/20'
-                  } ${isPlaying ? 'animate-pulse' : ''}`}
+                  className={`flex-1 rounded-full transition-all duration-150 ${isPassed ? 'bg-rose-400 shadow-[0_0_6px_rgba(244,114,182,0.8)]' : 'bg-white/20'
+                    } ${isPlaying ? 'animate-pulse' : ''}`}
                   style={{
                     height: `${heightMultiplier}%`,
                     animationDelay: `${(i % 5) * 0.12}s`,
