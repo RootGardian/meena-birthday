@@ -137,3 +137,88 @@
   scrollbar-width: thin;
   scrollbar-color: rgba(244, 114, 182, 0.45) transparent;
 }
+
+/* Responsive adaptation for mobile in landscape orientation or low-height viewports */
+@media (max-height: 580px) {
+  .countdown-content-wrapper {
+    gap: 0.35rem !important;
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+  }
+  .countdown-tagline {
+    font-size: 9px !important;
+    letter-spacing: 0.2em !important;
+  }
+  .countdown-title-main {
+    font-size: 1.6rem !important;
+    line-height: 1.1 !important;
+  }
+  .countdown-title-sub {
+    font-size: 1.35rem !important;
+    line-height: 1.1 !important;
+  }
+  .countdown-subtitle {
+    font-size: 10px !important;
+  }
+  .countdown-card-box {
+    width: 3.85rem !important;
+    height: 3.85rem !important;
+    border-radius: 0.75rem !important;
+  }
+  .countdown-card-num {
+    font-size: 1.4rem !important;
+  }
+  .countdown-colon {
+    font-size: 1.15rem !important;
+    margin-top: -0.25rem !important;
+  }
+  .countdown-label {
+    font-size: 8px !important;
+    margin-top: 0.2rem !important;
+    letter-spacing: 0.15em !important;
+  }
+  .countdown-subtext {
+    font-size: 10px !important;
+  }
+  .countdown-btn {
+    padding: 0.4rem 1.25rem !important;
+    font-size: 0.72rem !important;
+  }
+  .countdown-caption {
+    font-size: 9px !important;
+    margin-top: 0.2rem !important;
+  }
+}
+
+@media (max-height: 440px) {
+  .countdown-content-wrapper {
+    gap: 0.2rem !important;
+    padding-top: 0.15rem !important;
+    padding-bottom: 0.15rem !important;
+  }
+  .countdown-title-main {
+    font-size: 1.3rem !important;
+  }
+  .countdown-title-sub {
+    font-size: 1.1rem !important;
+  }
+  .countdown-card-box {
+    width: 3.25rem !important;
+    height: 3.25rem !important;
+    border-radius: 0.6rem !important;
+  }
+  .countdown-card-num {
+    font-size: 1.2rem !important;
+  }
+  .countdown-colon {
+    font-size: 1rem !important;
+  }
+  .countdown-label {
+    font-size: 7px !important;
+  }
+  .countdown-btn {
+    padding: 0.35rem 1rem !important;
+    font-size: 0.68rem !important;
+  }
+}
+

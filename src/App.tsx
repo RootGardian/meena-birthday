@@ -28,7 +28,7 @@ export function App() {
   };
 
   return (
-    <div className={`min-h-screen bg-[#171018] text-white ${currentScreen === 'countdown' ? 'h-screen h-[100dvh] overflow-hidden' : ''}`}>
+    <div className="min-h-screen min-h-[100dvh] bg-[#171018] text-white">
       {/* Lecteur de musique continue en arrière-plan (All Eyes On You - Meek Mill & Chris Brown) */}
       <MusicPlayer />
 

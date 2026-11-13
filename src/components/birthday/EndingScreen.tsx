@@ -53,7 +53,7 @@ export const EndingScreen: React.FC<EndingScreenProps> = ({ onRestart }) => {
   }, [titleIndex]);
 
   return (
-    <div className="relative min-h-screen w-full bg-[#180b19] text-[#f7eef2] flex flex-col items-center justify-center p-4 sm:p-8 overflow-hidden select-none font-sans">
+    <div className="relative min-h-screen min-h-[100dvh] w-full bg-[#180b19] text-[#f7eef2] flex flex-col items-center justify-center p-4 sm:p-8 overflow-y-auto select-none font-sans py-8 landscape:py-4">
       {/* Fond violet / bordeaux galaxie avec dégradé subtil comme sur les 3 images */}
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#38162f] via-[#1e0d1f] to-[#0d050e] pointer-events-none" />
 
