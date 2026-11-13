@@ -16,7 +16,6 @@ import img10 from '../../assets/WhatsApp Image 2026-11-11 at 23.50.09 (4).jpeg';
 import img11 from '../../assets/WhatsApp Image 2026-11-12 at 08.38.28.jpeg';
 
 // Nouvelles photos ajoutées
-import img12 from '../../assets/WhatsApp Image 2026-11-12 at 13.06.49.jpeg';
 import img13 from '../../assets/WhatsApp Image 2026-11-12 at 13.07.51.jpeg';
 import img14 from '../../assets/WhatsApp Image 2026-11-12 at 13.08.32.jpeg';
 import img15 from '../../assets/WhatsApp Image 2026-11-12 at 13.20.47.jpeg';
@@ -28,14 +27,10 @@ import img20 from '../../assets/WhatsApp Image 2026-11-12 at 13.28.21.jpeg';
 import img21 from '../../assets/WhatsApp Image 2026-11-12 at 14.38.38.jpeg';
 import img22 from '../../assets/WhatsApp Image 2026-11-12 at 15.44.12.jpeg';
 import img23 from '../../assets/WhatsApp Image 2026-11-12 at 15.44.12 (1).jpeg';
-import img24 from '../../assets/WhatsApp Image 2026-11-12 at 15.44.12 (2).jpeg';
 import img25 from '../../assets/WhatsApp Image 2026-11-12 at 23.40.23.jpeg';
 import img26 from '../../assets/WhatsApp Image 2026-11-13 at 08.45.23.jpeg';
 
 // Nouvelles vidéos ajoutées et leurs vignettes d'aperçu pour éviter tout écran noir
-import vid1 from '../../assets/WhatsApp Video 2026-11-12 at 13.08.53.mp4';
-import vid1Thumb from '../../assets/vid1-thumb.jpg';
-
 import vid2 from '../../assets/WhatsApp Video 2026-11-12 at 13.20.49.mp4';
 import vid2Thumb from '../../assets/vid2-thumb.jpg';
 
@@ -65,15 +60,6 @@ const GALLERY_PHOTOS: GalleryPolaroid[] = [
     rotation: '-rotate-2',
   },
   {
-    id: 201,
-    url: vid1,
-    poster: vid1Thumb,
-    type: 'video',
-    title: 'Rires en Mouvement ✨',
-    caption: 'Ce rire communicatif qu’on adore tant entendre !',
-    rotation: 'rotate-3',
-  },
-  {
     id: 11,
     url: img11,
     type: 'image',
@@ -88,14 +74,6 @@ const GALLERY_PHOTOS: GalleryPolaroid[] = [
     title: 'Ton Plus Beau Sourire',
     caption: 'Cette lumière qui rend chaque instant magique.',
     rotation: 'rotate-2',
-  },
-  {
-    id: 12,
-    url: img12,
-    type: 'image',
-    title: 'Rayon de Soleil',
-    caption: 'Ton énergie et ta joie illuminent tout autour de toi.',
-    rotation: '-rotate-3',
   },
   {
     id: 202,
@@ -267,14 +245,6 @@ const GALLERY_PHOTOS: GalleryPolaroid[] = [
     title: 'Charme & Beauté',
     caption: 'Un charme intemporel et une douceur infinie.',
     rotation: 'rotate-1',
-  },
-  {
-    id: 24,
-    url: img24,
-    type: 'image',
-    title: 'Regard Lumineux',
-    caption: 'Toute la tendresse et la bienveillance dans un seul regard.',
-    rotation: '-rotate-2',
   },
   {
     id: 25,
