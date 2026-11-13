@@ -25,6 +25,12 @@ import img17 from '../../assets/WhatsApp Image 2026-11-12 at 13.21.18.jpeg';
 import img18 from '../../assets/WhatsApp Image 2026-11-12 at 13.21.18 (1).jpeg';
 import img19 from '../../assets/WhatsApp Image 2026-11-12 at 13.21.19.jpeg';
 import img20 from '../../assets/WhatsApp Image 2026-11-12 at 13.28.21.jpeg';
+import img21 from '../../assets/WhatsApp Image 2026-11-12 at 14.38.38.jpeg';
+import img22 from '../../assets/WhatsApp Image 2026-11-12 at 15.44.12.jpeg';
+import img23 from '../../assets/WhatsApp Image 2026-11-12 at 15.44.12 (1).jpeg';
+import img24 from '../../assets/WhatsApp Image 2026-11-12 at 15.44.12 (2).jpeg';
+import img25 from '../../assets/WhatsApp Image 2026-11-12 at 23.40.23.jpeg';
+import img26 from '../../assets/WhatsApp Image 2026-11-13 at 08.45.23.jpeg';
 
 // Nouvelles vidéos ajoutées et leurs vignettes d'aperçu pour éviter tout écran noir
 import vid1 from '../../assets/WhatsApp Video 2026-11-12 at 13.08.53.mp4';
@@ -237,6 +243,54 @@ const GALLERY_PHOTOS: GalleryPolaroid[] = [
     title: 'Bonheur Infini',
     caption: 'Que cette nouvelle année t’apporte tout ce dont tu rêves.',
     rotation: '-rotate-2',
+  },
+  {
+    id: 21,
+    url: img21,
+    type: 'image',
+    title: 'Rayonnement & Grâce',
+    caption: 'Une aura naturelle et éclatante qui illumine chaque journée.',
+    rotation: 'rotate-2',
+  },
+  {
+    id: 22,
+    url: img22,
+    type: 'image',
+    title: 'Éclats de Rire',
+    caption: 'La spontanéité et la joie pure qui rendent la vie si belle.',
+    rotation: '-rotate-3',
+  },
+  {
+    id: 23,
+    url: img23,
+    type: 'image',
+    title: 'Charme & Beauté',
+    caption: 'Un charme intemporel et une douceur infinie.',
+    rotation: 'rotate-1',
+  },
+  {
+    id: 24,
+    url: img24,
+    type: 'image',
+    title: 'Regard Lumineux',
+    caption: 'Toute la tendresse et la bienveillance dans un seul regard.',
+    rotation: '-rotate-2',
+  },
+  {
+    id: 25,
+    url: img25,
+    type: 'image',
+    title: 'Douce Nuit Magique',
+    caption: 'Des instants précieux et inoubliables gravés à jamais.',
+    rotation: 'rotate-3',
+  },
+  {
+    id: 26,
+    url: img26,
+    type: 'image',
+    title: 'Aurore Radieuse',
+    caption: 'Commencer chaque nouvelle page avec ton plus beau sourire.',
+    rotation: '-rotate-1',
   },
 ];
 

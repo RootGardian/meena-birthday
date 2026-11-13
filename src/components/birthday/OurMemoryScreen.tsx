@@ -107,7 +107,7 @@ const SPECIAL_LETTER = `À ma très chère Meena Faty,
 
 Aujourd’hui, nous célébrons bien plus qu’un anniversaire : nous célébrons une femme extraordinaire, une sœur au cœur d’or, un pilier pour toute sa famille et une amie irremplaçable.
 
-À travers ces 30 cadeaux et ces 30 messages venus du cœur de tes proches, tu as pu voir une fraction de tout l'amour et de l'admiration que nous te portons. Tu as cette générosité naturelle qui protège, qui console et qui rassemble.
+À travers tous ces cadeaux et ces magnifiques messages venus du cœur de tes proches, tu as pu voir une fraction de tout l'amour et de l'admiration que nous te portons. Tu as cette générosité naturelle qui protège, qui console et qui rassemble.
 
 Que cette nouvelle année t’ouvre les portes du succès absolu, d'une santé de fer, de la paix de l'âme et d'un bonheur infini. Ne change jamais ta pureté, ton sourire communicatif et cette force bienveillante qui fait de toi une reine.
 

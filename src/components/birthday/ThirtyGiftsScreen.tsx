@@ -540,6 +540,64 @@ Durant ce moment, j’ai également pu découvrir la belle personne que tu es à
 Continue de vivre, continue de briller et de faire briller tous ceux que tu aimes. Aie toujours cette joie de vivre et continue de la répandre. Que Dieu te rapproche de lui, t’accorde une longue vie et une santé de fer.
 
 Joyeux anniversaire Aminata Faty ❤️`
+  },
+  {
+    id: 31,
+    name: 'Absa',
+    title: 'Absa',
+    message: `Joyeux anniversaire notre Nicky !
+
+Je te souhaite tout le bonheur du monde, santé, prospérité.
+
+Leppp lo beug yalla nalako yalla defaral. Passe une très bonne journée !
+
+Bisouuuuuu ❤️`
+  },
+  {
+    id: 32,
+    name: 'Maty Smith',
+    title: 'Maty Smith',
+    message: `Happy Birthday, peppa pig ! ❤️🎂
+
+Franchement, tu fais partie de mes plus belles rencontres d’enfance. T’es vraiment une belle personne et je te souhaite tout le bonheur du monde.
+
+J’aime beaucoup la sincérité qu’il y a toujours eu entre nous, sans prise de tête ni négativité. C’est rare et ça fait plaisir d’avoir une personne comme toi dans sa vie.
+
+J’espère vraiment qu’on gardera cette belle amitié encore très longtemps, jusqu’à voir nos enfants grandir ensemble, inchaAllah.
+
+Je te souhaite plein de bonheur, d’amour, de réussite et surtout une très longue vie. Reste comme tu es, ne change pas !
+
+Love youuu so muchhh 💕`
+  },
+  {
+    id: 33,
+    name: 'Coumba Aïcha',
+    title: 'Coumba Aïcha',
+    message: `Je ne sais pas si je trouverai un jour les mots assez forts pour exprimer tout l’amour que j’ai pour toi parce qu’au delà du lien qui nous unit tu représentes une partie de ma vie que je ne pourrais jamais remplacer.
+
+Tu es ma sœur, et ce mot à lui seul porte tellement de choses 🥹 des souvenirs, des fous rires, des confidences, des moments de joie... Et malgré tout, il y a cette chose qui ne changera jamais et c’est le lien qui nous unit.
+
+Je ne sais pas si je trouverai un jour les mots assez forts pour exprimer tout l’amour que j’ai pour toi.
+
+Je t’aime énormément et ça ne changera jamais.
+
+Longue vie à nous sis 🫶🏾 be happy`
+  },
+  {
+    id: 34,
+    name: 'Mimi',
+    title: 'Mimi',
+    message: `Joyeux anniversaire à ma très chère fille Amina Faty ! 🥰❤️
+
+En ce jour si spécial, je prie Dieu de t’accorder une longue vie, une santé de fer, beaucoup de bonheur et une réussite sans limite.
+
+Que chacun de tes rêves devienne réalité et que ton chemin soit toujours éclairé par la joie, l’amour et la bénédiction divine. Sache que tu es une personne précieuse et que je te souhaite tout ce qu’il y a de meilleur dans cette vie.
+
+Continue de briller, de sourire et de garder ce magnifique cœur. Que cette nouvelle année soit remplie de belles surprises et de grâce !
+
+Je t’aime énormément ma princesse. Profite pleinement de ta journée !
+
+Joyeux anniversaire encore Amina Faty 😍🥰❤️`
   }
 ];
 
@@ -735,6 +793,10 @@ const TypewriterMessage: React.FC<TypewriterMessageProps> = ({ gift, onClose }) 
                   fullP.includes('ROMARIC') ||
                   fullP.includes('Papi Chulo') ||
                   fullP.includes('Coumbiss') ||
+                  fullP.includes('Coumba') ||
+                  fullP.includes('Mimi') ||
+                  fullP.includes('Maty') ||
+                  fullP.includes('Absa') ||
                   fullP.includes('Awouch') ||
                   fullP.startsWith('Avec') ||
                   fullP.startsWith('Ton ') ||
@@ -891,7 +953,7 @@ export const ThirtyGiftsScreen: React.FC<ThirtyGiftsScreenProps> = ({ onGoToOurM
         {/* Top Tagline */}
         <div className="flex items-center justify-center gap-2 text-[11px] sm:text-xs lg:text-sm tracking-[0.28em] uppercase text-rose-200/80 font-medium">
           <span className="text-rose-300">✦</span>
-          <span>30 CADEAUX POUR TON ANNIVERSAIRE</span>
+          <span>{GIFTS_LIST.length} CADEAUX POUR TON ANNIVERSAIRE</span>
           <span className="text-rose-300">✦</span>
         </div>
 
@@ -905,7 +967,7 @@ export const ThirtyGiftsScreen: React.FC<ThirtyGiftsScreenProps> = ({ onGoToOurM
         {/* Progression des cadeaux */}
         <div className="flex items-center justify-center gap-3 text-xs sm:text-sm lg:text-base text-rose-200/70 pt-1">
           <span className="bg-white/[0.04] px-4 sm:px-6 py-1.5 sm:py-2 rounded-full border border-white/10 backdrop-blur-xs">
-            Cadeaux ouverts : <strong className="text-rose-300 font-mono">{openedGifts.length} / 30</strong> 🎁
+            Cadeaux ouverts : <strong className="text-rose-300 font-mono">{openedGifts.length} / {GIFTS_LIST.length}</strong> 🎁
           </span>
         </div>
 
