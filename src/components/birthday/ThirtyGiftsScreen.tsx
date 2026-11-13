@@ -3,9 +3,9 @@ import confetti from 'canvas-confetti';
 import { Play, Pause, Mic } from 'lucide-react';
 import { FallingPetals } from './FallingPetals';
 
-// Import des messages vocaux de Papa 1 et Papa 2
-import audioPapa1 from '../../assets/WhatsApp Audio 2026-11-12 at 20.50.50.ogg';
-import audioPapa2 from '../../assets/WhatsApp Audio 2026-11-12 at 20.51.21.ogg';
+// Import des messages vocaux de Papa et Babacar Faty
+import audioPapa from '../../assets/audio_papa.ogg';
+import audioBabacar from '../../assets/audio_babacar.ogg';
 
 interface ThirtyGiftsScreenProps {
   onBackToCountdown?: () => void;
@@ -24,6 +24,17 @@ export interface GiftItem {
 export const GIFTS_LIST: GiftItem[] = [
   {
     id: 1,
+    name: 'Papa',
+    title: 'Papa',
+    audio: audioPapa,
+    message: `Joyeux anniversaire Aminata ! ❤️🎙️
+
+Voici un message vocal plein d'amour, de fierté et de bénédictions de la part de ton Papa.
+
+Prends un instant pour écouter sa voix :`
+  },
+  {
+    id: 2,
     name: 'Maman',
     title: 'Maman',
     message: `À ma fille, mon précieux cadeau de الله SWT,
@@ -53,7 +64,7 @@ Je t’aime d’un amour que les mots ne pourront jamais entièrement contenir.
 Ta maman, qui t’aimera dans cette vie et qui espère te retrouver dans l’au-delà.`
   },
   {
-    id: 2,
+    id: 3,
     name: 'Awa Faty',
     title: 'Awa Faty',
     message: `À ma très chère, grande petite sœur,
@@ -92,7 +103,7 @@ Ta petite sœur,
 Awa Faty…`
   },
   {
-    id: 3,
+    id: 4,
     name: 'Moussa Faty',
     title: 'Moussa Faty',
     message: `Tu es une personne formidable, mais surtout admirable. Tu as quelque chose d’une mère : tu sais prendre soin des autres, les écouter et leur apporter de l’affection. Tu as un cœur aussi vaste que la mer.
@@ -107,7 +118,18 @@ Ton petit frère,
 Moussa Faty`
   },
   {
-    id: 4,
+    id: 5,
+    name: 'Babacar Faty',
+    title: 'Babacar Faty',
+    audio: audioBabacar,
+    message: `Joyeux anniversaire Meena ! ❤️🎙️
+
+Voici un message vocal plein d'amour et de tendresse de la part de ton petit frère Babacar.
+
+Prends un instant pour écouter sa voix :`
+  },
+  {
+    id: 6,
     name: 'Anthia Rodriguez',
     title: 'Anthia Rodriguez',
     message: `Joyeux anniversaire Barre Faty !
@@ -121,7 +143,7 @@ Je te souhaite le meilleur, surtout la santé et le courage de continuer. C’es
 Je t’aime fort.`
   },
   {
-    id: 5,
+    id: 7,
     name: 'Sadibou seck',
     title: 'Sadibou seck',
     message: `Joyeux anniversaire Amina !
@@ -136,7 +158,7 @@ Encore joyeux anniversaire à toi !
 Love u fami f`
   },
   {
-    id: 6,
+    id: 8,
     name: 'Alioune Souley',
     title: 'Alioune Souley',
     message: `Amina,
@@ -152,7 +174,7 @@ J’espère que la vie sera aussi douce avec toi que tu peux l’être avec les 
 Profite pleinement de ta journée, Amina. Tu mérites sincèrement le meilleur.`
   },
   {
-    id: 7,
+    id: 9,
     name: 'Mame Fatou',
     title: 'Mame Fatou',
     message: `To my lovely cousinnnnn,
@@ -166,7 +188,7 @@ Merci simplement d’être toi. Je ne te souhaite pas seulement un joyeux annive
 Je t’aime baby.`
   },
   {
-    id: 8,
+    id: 10,
     name: 'Rianne',
     title: 'Rianne',
     message: `Joyeux anniversaire ma Amina, ma vieee !
@@ -184,7 +206,7 @@ Ne change surtout pas, reste cette belle personne pleine de vie que j’ai eu la
 Je t’aime fort ma Amina. Profite bien de ta journée, tu le mérites tellement.`
   },
   {
-    id: 9,
+    id: 11,
     name: 'Al Amine',
     title: 'Al Amine',
     message: `Amina Faty,
@@ -198,7 +220,7 @@ Je te souhaite vraiment le meilleur dans tout ce que tu entreprends. Ne change s
 Love you bestie !`
   },
   {
-    id: 10,
+    id: 12,
     name: 'Aïssatou',
     title: 'Aïssatou',
     message: `Happy Birthday ma Faty !
@@ -216,7 +238,7 @@ Profite pleinement de ta journée, ma chérie. Je t’aime énormément.
 Happy Birthday encore ma petite sœur !`
   },
   {
-    id: 11,
+    id: 13,
     name: 'Paye',
     title: 'Paye',
     message: `En ce jour si spécial, je remercie Dieu pour ta vie et pour le cadeau précieux que tu es dans la mienne.
@@ -233,7 +255,7 @@ Avec toute mon affection,
 PAYE`
   },
   {
-    id: 12,
+    id: 14,
     name: 'Leye',
     title: 'Leye',
     message: `Happy birthday NICKY MINAJ !
@@ -245,7 +267,7 @@ Franchement nitt kou bakh wathié sa bopp meune dieulé rekk la dioye si ioe mai
 Breff profite de ton jour nickyyyyyyy !`
   },
   {
-    id: 13,
+    id: 15,
     name: 'Ahmed',
     title: 'Ahmed',
     message: `Heureuse fête d'anniversaire ma moitié !
@@ -259,7 +281,7 @@ Joyeux anniversaire ma moitié adorée, je t'aime très fort et je t'aimerai pou
 Love you ❤️`
   },
   {
-    id: 14,
+    id: 16,
     name: 'Papi Diagne',
     title: 'Papi Diagne',
     message: `En ce jour si spécial à tes yeux, j’en profite pour te souhaiter mes meilleurs vœux ! J’te souhaite une vie remplie de bonheur, d’amour, d’argent et pleine de bonnes choses inchallah.
@@ -275,7 +297,7 @@ Bref, mes mots ne suffiront jamais pour t’écrire en ce jour, mais sache que n
 Loveeee uuuu my ggggg !`
   },
   {
-    id: 15,
+    id: 17,
     name: 'Aysha',
     title: 'Aysha',
     message: `À ma presque jumelle,
@@ -289,7 +311,7 @@ Reste comme tu es, ma vieille d’un jour.
 Je t’aime fort !`
   },
   {
-    id: 16,
+    id: 18,
     name: 'Cellou',
     title: 'Cellou',
     message: `Pour dire vrai c’est pas dans mes habitudes d’écrire des lettres ou des trucs du genre, mais t’es une personne qui mérite beaucoup de bonnes choses dans ta vie Amina.
@@ -303,7 +325,7 @@ En outre, je ne suis pas le meilleur pour m’exprimer à travers des textes mai
 Vis bien et longue vie à nous my gggg !`
   },
   {
-    id: 17,
+    id: 19,
     name: 'Dior Virginie',
     title: 'Dior Virginie',
     message: `Joyeux anniversaire, ma Faty d’amour !
@@ -323,7 +345,7 @@ Merci d’être toi, ma Faty. Que cette amitié dure encore longtemps et qu’on
 Maison Hathor thiaaa kanameeee rek ma belle !`
   },
   {
-    id: 18,
+    id: 20,
     name: 'Kadeza',
     title: 'Kadeza',
     message: `Joyeux anniversaire Minaaaaaa !
@@ -338,7 +360,7 @@ Je t'embrasse très fort !
 Kadeza`
   },
   {
-    id: 19,
+    id: 21,
     name: 'Aïssatou Mbodj',
     title: 'Aïssatou Mbodj',
     message: `Joyeux anniversaire à ma personne précieuse, ma best, ma sœur de cœur !
@@ -354,7 +376,7 @@ Je t'aime énormément, et peu importe ce que la vie nous réserve, sache que tu
 Joyeux anniversaire, ma best d'amour !`
   },
   {
-    id: 20,
+    id: 22,
     name: 'Seynabou Gina',
     title: 'Seynabou Gina',
     message: `À ma petite Nicky D’amour,
@@ -376,7 +398,7 @@ Joyeux anniversaire encore ma bestie d’amour, je te souhaite une vie aussi bel
 Gina.`
   },
   {
-    id: 21,
+    id: 23,
     name: 'Mamy Faye',
     title: 'Mamy Faye',
     message: `Joyeux anniversaire Westie Sis !
@@ -396,7 +418,7 @@ Merci d'être là.
 Love u Fam ❤️`
   },
   {
-    id: 22,
+    id: 24,
     name: 'Papa Babacar',
     title: 'Papa Babacar',
     message: `T’es pas juste ma cousine, t’es aussi ma sœur et mon amie.
@@ -411,7 +433,7 @@ Ton cousin, ton frère et ton ami,
 Pape Babacar Diaïté`
   },
   {
-    id: 23,
+    id: 25,
     name: 'Aziz Mdodj',
     title: 'Aziz Mdodj',
     message: `Mon amour,
@@ -433,7 +455,7 @@ Finalement, je remercie la vie pour ce 23 mars, parce que ce jour-là, sans forc
 Je tiens à toi plus que mes mots ne peuvent parfois le montrer ❤️`
   },
   {
-    id: 24,
+    id: 26,
     name: 'Marianne',
     title: 'Marianne',
     message: `À TOI, NICKY !
@@ -458,7 +480,7 @@ Joyeux anniversaire encore, ma belle NICKYYYYYYY ! LOVE YOU SO MUCH MY LOVE !
 CHAAAARRRGGGGÉEEEEEEE ! ✨`
   },
   {
-    id: 25,
+    id: 27,
     name: 'Christine Coly',
     title: 'Christine Coly',
     message: `Christine Coly pour Amina,
@@ -475,7 +497,7 @@ En ce jour si particulier, je veux simplement te rappeler à quel point tu es un
 Joyeux anniversaire à toi, une personne aussi douce que précieuse. Ne change jamais cette belle âme que tu es. Je suis reconnaissante de te connaître et j’espère que la vie nous permettra de partager encore beaucoup de beaux moments ensemble.`
   },
   {
-    id: 26,
+    id: 28,
     name: 'Romaric',
     title: 'Romaric',
     message: `Lettre à Amina : Joyeux anniversaire Barre Faty !
@@ -490,7 +512,7 @@ Je t’aime fort,
 ROMARIC`
   },
   {
-    id: 27,
+    id: 29,
     name: 'Papy Chulo',
     title: 'Papy Chulo',
     message: `Joyeux anniversaire ma Amina !
@@ -504,7 +526,7 @@ N'oublie pas de me réserver une part du gâteau ! 🎂
 Avec toute mon affection, de la part de Papi Chulo, ton meilleur pote garçon`
   },
   {
-    id: 28,
+    id: 30,
     name: 'Awa Ndiaye',
     title: 'Awa Ndiaye',
     message: `Joyeux anniversaire jumelle !!!
@@ -520,7 +542,7 @@ Celle que tu casses les couilles le plus 😂
 Awouch ❤️ EVE`
   },
   {
-    id: 29,
+    id: 31,
     name: 'Coumbis',
     title: 'Coumbis',
     message: `❤️ Joyeux anniversaire Aminata Faty ! ❤️
@@ -534,7 +556,7 @@ Je te souhaite le meilleur aujourd’hui et pour toujours. ❤️
 Avec beaucoup d’affection, de la part de Coumbiss. 💕`
   },
   {
-    id: 30,
+    id: 32,
     name: 'Mbaye Ndiaye',
     title: 'Mbaye Ndiaye',
     message: `Le 03 Août 2025, je me souviens bien. C’était la première fois qu’on avait échangé.
@@ -548,7 +570,7 @@ Continue de vivre, continue de briller et de faire briller tous ceux que tu aime
 Joyeux anniversaire Aminata Faty ❤️`
   },
   {
-    id: 31,
+    id: 33,
     name: 'Absa',
     title: 'Absa',
     message: `Joyeux anniversaire notre Nicky !
@@ -560,7 +582,7 @@ Leppp lo beug yalla nalako yalla defaral. Passe une très bonne journée !
 Bisouuuuuu ❤️`
   },
   {
-    id: 32,
+    id: 34,
     name: 'Maty Smith',
     title: 'Maty Smith',
     message: `Happy Birthday, peppa pig ! ❤️🎂
@@ -576,7 +598,7 @@ Je te souhaite plein de bonheur, d’amour, de réussite et surtout une très lo
 Love youuu so muchhh 💕`
   },
   {
-    id: 33,
+    id: 35,
     name: 'Coumba Aïcha',
     title: 'Coumba Aïcha',
     message: `Je ne sais pas si je trouverai un jour les mots assez forts pour exprimer tout l’amour que j’ai pour toi parce qu’au delà du lien qui nous unit tu représentes une partie de ma vie que je ne pourrais jamais remplacer.
@@ -590,7 +612,7 @@ Je t’aime énormément et ça ne changera jamais.
 Longue vie à nous sis 🫶🏾 be happy`
   },
   {
-    id: 34,
+    id: 36,
     name: 'Mimi',
     title: 'Mimi',
     message: `Joyeux anniversaire à ma très chère fille Amina Faty ! 🥰❤️
@@ -605,28 +627,6 @@ Je t’aime énormément ma princesse. Profite pleinement de ta journée !
 
 Joyeux anniversaire encore Amina Faty 😍🥰❤️`
   },
-  {
-    id: 35,
-    name: 'Papa 1',
-    title: 'Papa 1',
-    audio: audioPapa1,
-    message: `Joyeux anniversaire Aminata ! ❤️🎙️
-
-Voici un message vocal plein d'amour, de fierté et de bénédictions de la part de ton Papa 1.
-
-Prends un instant pour écouter sa voix :`
-  },
-  {
-    id: 36,
-    name: 'Papa 2',
-    title: 'Papa 2',
-    audio: audioPapa2,
-    message: `Joyeux anniversaire Aminata ! ❤️🎙️
-
-Voici un message vocal plein d'amour, de fierté et de bénédictions de la part de ton Papa 2.
-
-Prends un instant pour écouter sa voix :`
-  }
 ];
 
 interface VoiceNotePlayerProps {
