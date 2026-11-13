@@ -378,7 +378,7 @@ export const OurMemoryScreen: React.FC<OurMemoryScreenProps> = ({ onGoToGallery 
           onClick={() => setIsLetterOpen(false)}
         >
           {/* Titre au-dessus */}
-          <div className="relative z-10 text-center mb-3 sm:mb-5 shrink-0">
+          <div className="modal-external-title relative z-10 text-center mb-3 sm:mb-5 shrink-0">
             <h2 className="font-serif-luxury text-3xl sm:text-5xl italic font-normal text-white tracking-wide drop-shadow-[0_0_25px_rgba(255,255,255,0.8)]">
               A Love Letter For You
             </h2>
@@ -386,13 +386,13 @@ export const OurMemoryScreen: React.FC<OurMemoryScreenProps> = ({ onGoToGallery 
 
           {/* Carte en verre dépoli */}
           <div
-            className="relative z-10 max-w-2xl sm:max-w-3xl lg:max-w-4xl w-full bg-white/[0.04] backdrop-blur-2xl border border-white/15 rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 shadow-[0_25px_70px_rgba(0,0,0,0.7)] flex flex-col h-[82vh] max-h-[850px] animate-in zoom-in-95 duration-500 text-left"
+            className="modal-card-box relative z-10 max-w-2xl sm:max-w-3xl lg:max-w-4xl w-full bg-white/[0.04] backdrop-blur-2xl border border-white/15 rounded-2xl sm:rounded-3xl p-4 sm:p-8 lg:p-10 shadow-[0_25px_70px_rgba(0,0,0,0.7)] flex flex-col h-[85vh] sm:h-[82vh] max-h-[850px] animate-in zoom-in-95 duration-500 text-left"
             onClick={(e) => {
               e.stopPropagation();
               setDisplayedChars(SPECIAL_LETTER.length);
             }}
           >
-            <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-4 shrink-0">
+            <div className="modal-header flex items-center justify-between border-b border-white/10 pb-2.5 sm:pb-3 mb-3 sm:mb-4 shrink-0">
               <span className="text-xs sm:text-sm font-mono tracking-[0.2em] uppercase text-rose-200 font-semibold">
                 POUR MEENA FATY 🤍
               </span>
@@ -407,7 +407,7 @@ export const OurMemoryScreen: React.FC<OurMemoryScreenProps> = ({ onGoToGallery 
             {/* Corps de la lettre */}
             <div
               ref={scrollRef}
-              className="flex-1 overflow-y-auto pr-2 sm:pr-4 luxury-scrollbar scroll-smooth whitespace-pre-line text-[15px] sm:text-base lg:text-lg leading-[1.9] font-light text-rose-50/95 tracking-wide font-sans select-text pb-4"
+              className="flex-1 overflow-y-auto pr-2 sm:pr-4 luxury-scrollbar scroll-smooth whitespace-pre-line text-[14px] sm:text-base lg:text-lg leading-[1.7] sm:leading-[1.9] font-light text-rose-50/95 tracking-wide font-sans select-text pb-4"
             >
               {SPECIAL_LETTER.slice(0, displayedChars)}
               {displayedChars < SPECIAL_LETTER.length && (
@@ -416,10 +416,10 @@ export const OurMemoryScreen: React.FC<OurMemoryScreenProps> = ({ onGoToGallery 
             </div>
 
             {/* Bouton de fermeture */}
-            <div className="pt-4 border-t border-white/10 flex justify-center shrink-0">
+            <div className="modal-footer pt-3 sm:pt-4 border-t border-white/10 flex justify-center shrink-0">
               <button
                 onClick={() => setIsLetterOpen(false)}
-                className="px-8 sm:px-10 py-2.5 sm:py-3 rounded-full bg-[#f0859a] hover:bg-[#e87087] text-white font-semibold text-xs sm:text-sm tracking-[0.2em] uppercase shadow-[0_0_25px_rgba(240,133,154,0.65)] cursor-pointer transition-all active:scale-95"
+                className="modal-footer-btn px-6 sm:px-10 py-2 sm:py-3 rounded-full bg-[#f0859a] hover:bg-[#e87087] text-white font-semibold text-xs sm:text-sm tracking-[0.2em] uppercase shadow-[0_0_25px_rgba(240,133,154,0.65)] cursor-pointer transition-all active:scale-95"
               >
                 FERMER LA LETTRE 🤍
               </button>

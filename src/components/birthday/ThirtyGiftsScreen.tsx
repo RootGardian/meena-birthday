@@ -702,36 +702,36 @@ const VoiceNotePlayer: React.FC<VoiceNotePlayerProps> = ({ audioSrc, senderName 
   const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div className="w-full my-2 p-3 sm:p-4 rounded-xl bg-gradient-to-r from-rose-950/60 via-purple-950/40 to-pink-950/60 border border-rose-400/40 shadow-[0_0_20px_rgba(244,114,182,0.2)] backdrop-blur-md">
+    <div className="voice-player-container w-full my-1.5 sm:my-2 p-2.5 sm:p-4 rounded-xl bg-gradient-to-r from-rose-950/60 via-purple-950/40 to-pink-950/60 border border-rose-400/40 shadow-[0_0_20px_rgba(244,114,182,0.2)] backdrop-blur-md">
       <audio ref={audioRef} src={audioSrc} preload="metadata" />
 
-      <div className="flex items-center gap-2.5 sm:gap-3.5">
+      <div className="flex items-center gap-2 sm:gap-3.5">
         {/* Bouton Play / Pause compact avec lueur rose */}
         <button
           onClick={togglePlay}
-          className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gradient-to-tr from-rose-500 to-pink-500 text-white flex items-center justify-center shadow-[0_0_15px_rgba(244,63,94,0.5)] hover:scale-105 active:scale-95 transition-all cursor-pointer shrink-0"
+          className="voice-player-btn w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-gradient-to-tr from-rose-500 to-pink-500 text-white flex items-center justify-center shadow-[0_0_15px_rgba(244,63,94,0.5)] hover:scale-105 active:scale-95 transition-all cursor-pointer shrink-0"
         >
           {isPlaying ? (
-            <Pause className="w-4 h-4 sm:w-5 sm:h-5 fill-white text-white" />
+            <Pause className="w-3.5 h-3.5 sm:w-5 sm:h-5 fill-white text-white" />
           ) : (
-            <Play className="w-4 h-4 sm:w-5 sm:h-5 ml-0.5 fill-white text-white" />
+            <Play className="w-3.5 h-3.5 sm:w-5 sm:h-5 ml-0.5 fill-white text-white" />
           )}
         </button>
 
         {/* Visualisation onde sonore & scrubber */}
-        <div className="flex-1 flex flex-col justify-center gap-1">
+        <div className="flex-1 flex flex-col justify-center gap-0.5 sm:gap-1">
           <div className="flex items-center justify-between text-xs text-rose-200/90 font-mono">
-            <span className="flex items-center gap-1.5 text-[11px] sm:text-xs">
-              <span className={`w-2 h-2 rounded-full ${isPlaying ? 'bg-emerald-400 animate-ping' : 'bg-rose-400'}`} />
+            <span className="flex items-center gap-1.5 text-[10px] sm:text-xs">
+              <span className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${isPlaying ? 'bg-emerald-400 animate-ping' : 'bg-rose-400'}`} />
               Note vocale de <strong className="text-white font-serif-luxury">{senderName}</strong>
             </span>
-            <span className="font-semibold text-rose-300 text-[11px] sm:text-xs">
+            <span className="font-semibold text-rose-300 text-[10px] sm:text-xs">
               {formatTime(currentTime)} {duration > 0 && `/ ${formatTime(duration)}`}
             </span>
           </div>
 
           {/* Barres d'ondes audio animées style WhatsApp */}
-          <div className="flex items-center gap-1 h-5 py-0.5">
+          <div className="voice-player-waves flex items-center gap-1 h-4 sm:h-5 py-0.5">
             {Array.from({ length: 24 }).map((_, i) => {
               const barProgress = (i / 24) * 100;
               const isPassed = barProgress <= progress;
@@ -853,7 +853,7 @@ const TypewriterMessage: React.FC<TypewriterMessageProps> = ({ gift, onClose }) 
       </div>
 
       {/* Titre "Happy Birthday" éclatant au-dessus */}
-      <div className="relative z-10 text-center mb-3 sm:mb-6 lg:mb-8 animate-in slide-in-from-top-4 duration-700 shrink-0">
+      <div className="modal-external-title relative z-10 text-center mb-3 sm:mb-6 lg:mb-8 animate-in slide-in-from-top-4 duration-700 shrink-0">
         <h2 className="font-serif-luxury text-4xl sm:text-6xl md:text-7xl lg:text-8xl italic font-normal text-white tracking-wide drop-shadow-[0_0_25px_rgba(255,255,255,0.8)] drop-shadow-[0_0_60px_rgba(244,114,182,0.45)]">
           Happy Birthday
         </h2>
@@ -861,7 +861,7 @@ const TypewriterMessage: React.FC<TypewriterMessageProps> = ({ gift, onClose }) 
 
       {/* Carte en verre dépoli (Frosted Glassmorphism) aux proportions adaptées selon la taille de l'écran */}
       <div
-        className="relative z-10 max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl w-full bg-white/[0.04] backdrop-blur-2xl border border-white/15 rounded-2xl sm:rounded-3xl lg:rounded-[36px] p-5 sm:p-8 lg:p-10 xl:p-12 shadow-[0_25px_70px_rgba(0,0,0,0.7)] flex flex-col h-[85vh] sm:h-[82vh] lg:h-[78vh] xl:h-[75vh] max-h-[920px] animate-in zoom-in-95 duration-500 text-left"
+        className="modal-card-box relative z-10 max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl w-full bg-white/[0.04] backdrop-blur-2xl border border-white/15 rounded-2xl sm:rounded-3xl lg:rounded-[36px] p-4 sm:p-8 lg:p-10 xl:p-12 shadow-[0_25px_70px_rgba(0,0,0,0.7)] flex flex-col h-[85vh] sm:h-[82vh] lg:h-[78vh] xl:h-[75vh] max-h-[920px] animate-in zoom-in-95 duration-500 text-left"
         onClick={(e) => {
           e.stopPropagation();
           if (isTyping) {
@@ -870,12 +870,12 @@ const TypewriterMessage: React.FC<TypewriterMessageProps> = ({ gift, onClose }) 
         }}
       >
         {/* Guillemet décoratif en haut à gauche */}
-        <div className="text-white/30 text-2xl sm:text-3xl lg:text-4xl font-serif leading-none mb-2 lg:mb-3 select-none shrink-0">
+        <div className="modal-quote text-white/30 text-2xl sm:text-3xl lg:text-4xl font-serif leading-none mb-2 lg:mb-3 select-none shrink-0">
           ❝
         </div>
 
         {/* En-tête avec titre et badge élégant pour l'expéditeur */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-4 border-b border-white/10 pb-3 sm:pb-4 mb-3 sm:mb-5 shrink-0">
+        <div className="modal-header flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 border-b border-white/10 pb-2.5 sm:pb-4 mb-2.5 sm:mb-5 shrink-0">
           <span className="text-xs sm:text-sm lg:text-base font-mono tracking-[0.22em] uppercase text-rose-200 font-semibold drop-shadow-sm">
             HAPPY BIRTHDAY AMINA 🤍
           </span>
@@ -896,14 +896,14 @@ const TypewriterMessage: React.FC<TypewriterMessageProps> = ({ gift, onClose }) 
         >
           {gift.audio ? (
             /* Mise en page dédiée pour message avec note vocale : lecteur en tête puis texte complet en dessous sans débordement */
-            <div className="flex-1 flex flex-col items-center justify-start text-center px-2 sm:px-4 py-1 sm:py-2 w-full max-w-xl mx-auto space-y-3">
+            <div className="voice-note-wrapper flex-1 flex flex-col items-center justify-start text-center px-2 sm:px-4 py-1 sm:py-2 w-full max-w-xl mx-auto space-y-2.5 sm:space-y-3">
               {/* Le lecteur de note vocale compact */}
               <div className="w-full shrink-0">
                 <VoiceNotePlayer audioSrc={gift.audio} senderName={gift.name} />
               </div>
 
               {/* Texte complet de la note vocale rendu lisible et compact */}
-              <div className="space-y-2.5 w-full">
+              <div className="voice-note-text space-y-2 sm:space-y-2.5 w-full">
                 {paragraphs.map((p, idx) => (
                   <p
                     key={idx}
@@ -917,7 +917,7 @@ const TypewriterMessage: React.FC<TypewriterMessageProps> = ({ gift, onClose }) 
                 ))}
               </div>
 
-              <div className="pt-1.5 flex items-center gap-2 text-[11px] sm:text-xs font-mono tracking-widest uppercase text-rose-300/75">
+              <div className="voice-note-sign pt-1 sm:pt-1.5 flex items-center gap-2 text-[11px] sm:text-xs font-mono tracking-widest uppercase text-rose-300/75">
                 <span>— Avec tout mon amour —</span>
               </div>
             </div>
@@ -1057,10 +1057,10 @@ const TypewriterMessage: React.FC<TypewriterMessageProps> = ({ gift, onClose }) 
 
         {/* Bouton rose pill "RETOUR AUX CADEAUX →" qui apparaît une fois le texte fini d'écrire */}
         {!isTyping && (
-          <div className="pt-3 sm:pt-4 lg:pt-6 mt-2 border-t border-white/10 flex justify-center animate-in fade-in zoom-in-95 duration-500 shrink-0">
+          <div className="modal-footer pt-2 sm:pt-4 lg:pt-6 mt-1.5 sm:mt-2 border-t border-white/10 flex justify-center animate-in fade-in zoom-in-95 duration-500 shrink-0">
             <button
               onClick={onClose}
-              className="group inline-flex items-center justify-center gap-2.5 px-7 sm:px-10 lg:px-12 py-2.5 sm:py-3.5 lg:py-4 rounded-full bg-[#f0859a] hover:bg-[#e87087] active:scale-95 text-white font-semibold text-xs sm:text-sm lg:text-base tracking-[0.2em] uppercase shadow-[0_0_25px_rgba(240,133,154,0.65)] hover:shadow-[0_0_35px_rgba(240,133,154,0.9)] transition-all duration-300 cursor-pointer"
+              className="modal-footer-btn group inline-flex items-center justify-center gap-2 sm:gap-2.5 px-6 sm:px-10 lg:px-12 py-2 sm:py-3.5 lg:py-4 rounded-full bg-[#f0859a] hover:bg-[#e87087] active:scale-95 text-white font-semibold text-xs sm:text-sm lg:text-base tracking-[0.2em] uppercase shadow-[0_0_25px_rgba(240,133,154,0.65)] hover:shadow-[0_0_35px_rgba(240,133,154,0.9)] transition-all duration-300 cursor-pointer"
             >
               <span>RETOUR AUX CADEAUX</span>
               <span className="group-hover:translate-x-1.5 transition-transform">→</span>

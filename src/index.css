@@ -188,6 +188,60 @@
     font-size: 9px !important;
     margin-top: 0.2rem !important;
   }
+
+  /* Modals en mode paysage ou faible hauteur */
+  .modal-external-title {
+    display: none !important;
+  }
+  .modal-card-box {
+    height: 94vh !important;
+    max-height: 96vh !important;
+    padding: 0.5rem 0.85rem !important;
+    border-radius: 1rem !important;
+  }
+  .modal-quote {
+    display: none !important;
+  }
+  .modal-header {
+    padding-bottom: 0.25rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+  .modal-footer {
+    padding-top: 0.3rem !important;
+    margin-top: 0.2rem !important;
+  }
+  .modal-footer-btn {
+    padding: 0.35rem 1.25rem !important;
+    font-size: 0.72rem !important;
+  }
+
+  /* Lecteur vocal dans la modal en paysage */
+  .voice-player-container {
+    padding: 0.35rem 0.65rem !important;
+    margin-top: 0.2rem !important;
+    margin-bottom: 0.2rem !important;
+    border-radius: 0.75rem !important;
+  }
+  .voice-player-btn {
+    width: 2.25rem !important;
+    height: 2.25rem !important;
+  }
+  .voice-player-waves {
+    height: 0.9rem !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  .voice-note-wrapper {
+    gap: 0.35rem !important;
+  }
+  .voice-note-text p {
+    font-size: 0.82rem !important;
+    line-height: 1.35 !important;
+  }
+  .voice-note-sign {
+    padding-top: 0.2rem !important;
+    font-size: 9px !important;
+  }
 }
 
 @media (max-height: 440px) {
