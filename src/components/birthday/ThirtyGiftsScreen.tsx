@@ -702,36 +702,36 @@ const VoiceNotePlayer: React.FC<VoiceNotePlayerProps> = ({ audioSrc, senderName 
   const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div className="w-full my-3 sm:my-4 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-rose-950/60 via-purple-950/40 to-pink-950/60 border border-rose-400/40 shadow-[0_0_25px_rgba(244,114,182,0.25)] backdrop-blur-md">
+    <div className="w-full my-2 p-3 sm:p-4 rounded-xl bg-gradient-to-r from-rose-950/60 via-purple-950/40 to-pink-950/60 border border-rose-400/40 shadow-[0_0_20px_rgba(244,114,182,0.2)] backdrop-blur-md">
       <audio ref={audioRef} src={audioSrc} preload="metadata" />
 
-      <div className="flex items-center gap-3 sm:gap-4">
-        {/* Bouton Play / Pause avec lueur rose vibrante */}
+      <div className="flex items-center gap-2.5 sm:gap-3.5">
+        {/* Bouton Play / Pause compact avec lueur rose */}
         <button
           onClick={togglePlay}
-          className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-tr from-rose-500 to-pink-500 text-white flex items-center justify-center shadow-[0_0_20px_rgba(244,63,94,0.6)] hover:scale-105 active:scale-95 transition-all cursor-pointer shrink-0"
+          className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gradient-to-tr from-rose-500 to-pink-500 text-white flex items-center justify-center shadow-[0_0_15px_rgba(244,63,94,0.5)] hover:scale-105 active:scale-95 transition-all cursor-pointer shrink-0"
         >
           {isPlaying ? (
-            <Pause className="w-5 h-5 sm:w-6 sm:h-6 fill-white text-white" />
+            <Pause className="w-4 h-4 sm:w-5 sm:h-5 fill-white text-white" />
           ) : (
-            <Play className="w-5 h-5 sm:w-6 sm:h-6 ml-0.5 fill-white text-white" />
+            <Play className="w-4 h-4 sm:w-5 sm:h-5 ml-0.5 fill-white text-white" />
           )}
         </button>
 
         {/* Visualisation onde sonore & scrubber */}
-        <div className="flex-1 flex flex-col justify-center gap-1.5">
+        <div className="flex-1 flex flex-col justify-center gap-1">
           <div className="flex items-center justify-between text-xs text-rose-200/90 font-mono">
             <span className="flex items-center gap-1.5 text-[11px] sm:text-xs">
               <span className={`w-2 h-2 rounded-full ${isPlaying ? 'bg-emerald-400 animate-ping' : 'bg-rose-400'}`} />
               Note vocale de <strong className="text-white font-serif-luxury">{senderName}</strong>
             </span>
-            <span className="font-semibold text-rose-300">
+            <span className="font-semibold text-rose-300 text-[11px] sm:text-xs">
               {formatTime(currentTime)} {duration > 0 && `/ ${formatTime(duration)}`}
             </span>
           </div>
 
           {/* Barres d'ondes audio animées style WhatsApp */}
-          <div className="flex items-center gap-1 h-6 py-1">
+          <div className="flex items-center gap-1 h-5 py-0.5">
             {Array.from({ length: 24 }).map((_, i) => {
               const barProgress = (i / 24) * 100;
               const isPassed = barProgress <= progress;
@@ -759,7 +759,7 @@ const VoiceNotePlayer: React.FC<VoiceNotePlayerProps> = ({ audioSrc, senderName 
             step="0.05"
             value={currentTime}
             onChange={handleSeek}
-            className="w-full h-1.5 accent-rose-400 bg-white/10 rounded-lg appearance-none cursor-pointer mt-1"
+            className="w-full h-1 accent-rose-400 bg-white/10 rounded-lg appearance-none cursor-pointer mt-0.5"
           />
         </div>
       </div>
@@ -896,28 +896,28 @@ const TypewriterMessage: React.FC<TypewriterMessageProps> = ({ gift, onClose }) 
         >
           {gift.audio ? (
             /* Mise en page dédiée pour message avec note vocale : lecteur en tête puis texte complet en dessous sans débordement */
-            <div className="flex-1 flex flex-col items-center justify-start text-center px-2 sm:px-4 py-2 sm:py-4 w-full max-w-2xl mx-auto space-y-4 sm:space-y-6">
-              {/* Le lecteur de note vocale stylé */}
+            <div className="flex-1 flex flex-col items-center justify-start text-center px-2 sm:px-4 py-1 sm:py-2 w-full max-w-xl mx-auto space-y-3">
+              {/* Le lecteur de note vocale compact */}
               <div className="w-full shrink-0">
                 <VoiceNotePlayer audioSrc={gift.audio} senderName={gift.name} />
               </div>
 
-              {/* Texte complet de la note vocale */}
-              <div className="space-y-3 sm:space-y-4 w-full">
+              {/* Texte complet de la note vocale rendu lisible et compact */}
+              <div className="space-y-2.5 w-full">
                 {paragraphs.map((p, idx) => (
                   <p
                     key={idx}
-                    className="font-serif-luxury text-base sm:text-xl lg:text-2xl text-rose-100/95 leading-relaxed italic drop-shadow-sm px-2"
+                    className="font-serif-luxury text-sm sm:text-base lg:text-lg text-rose-100/95 leading-relaxed italic drop-shadow-sm px-2"
                   >
                     {p}
                     {idx === paragraphs.length - 1 && isTyping && (
-                      <span className="inline-block w-2 sm:w-2.5 h-4 sm:h-5 lg:h-6 bg-rose-200 animate-pulse ml-1 align-middle shadow-[0_0_8px_rgba(255,255,255,0.85)]" />
+                      <span className="inline-block w-1.5 sm:w-2 h-3.5 sm:h-4 bg-rose-200 animate-pulse ml-1 align-middle shadow-[0_0_8px_rgba(255,255,255,0.85)]" />
                     )}
                   </p>
                 ))}
               </div>
 
-              <div className="pt-2 sm:pt-4 flex items-center gap-2 text-xs sm:text-sm font-mono tracking-widest uppercase text-rose-300/75">
+              <div className="pt-1.5 flex items-center gap-2 text-[11px] sm:text-xs font-mono tracking-widest uppercase text-rose-300/75">
                 <span>— Avec tout mon amour —</span>
               </div>
             </div>
@@ -1037,21 +1037,18 @@ const TypewriterMessage: React.FC<TypewriterMessageProps> = ({ gift, onClose }) 
             </div>
           ) : (
             /* Mise en page style carte de vœux luxueuse pour messages courts */
-            <div className="m-auto flex flex-col items-center justify-center text-center px-3 py-6 sm:py-8">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-full bg-rose-500/15 border border-rose-300/30 flex items-center justify-center text-amber-300 text-base sm:text-xl lg:text-2xl mb-5 lg:mb-8 shadow-[0_0_20px_rgba(244,114,182,0.25)] shrink-0">
-                ✨
-              </div>
-              <div className="relative max-w-xl lg:max-w-3xl mx-auto">
-                <span className="text-rose-300/20 text-5xl sm:text-6xl lg:text-7xl font-serif absolute -top-7 sm:-top-9 -left-3 sm:-left-6 select-none pointer-events-none">“</span>
-                <p className="font-serif-luxury text-lg sm:text-2xl md:text-3xl lg:text-4xl text-rose-50 leading-relaxed sm:leading-loose italic drop-shadow-sm px-4 lg:px-8">
+            <div className="m-auto flex flex-col items-center justify-center text-center px-3 py-3 sm:py-5 w-full">
+              <div className="relative max-w-xl lg:max-w-2xl mx-auto">
+                <span className="text-rose-300/20 text-4xl sm:text-5xl font-serif absolute -top-5 sm:-top-7 -left-2 sm:-left-4 select-none pointer-events-none">“</span>
+                <p className="font-serif-luxury text-base sm:text-xl lg:text-2xl text-rose-50 leading-relaxed italic drop-shadow-sm px-4 lg:px-6">
                   {currentText}
                   {isTyping && (
-                    <span className="inline-block w-2 sm:w-2.5 h-5 sm:h-6 lg:h-8 bg-rose-200 animate-pulse ml-1 align-middle shadow-[0_0_8px_rgba(255,255,255,0.85)]" />
+                    <span className="inline-block w-2 sm:w-2.5 h-4 sm:h-5 bg-rose-200 animate-pulse ml-1 align-middle shadow-[0_0_8px_rgba(255,255,255,0.85)]" />
                   )}
                 </p>
-                <span className="text-rose-300/20 text-5xl sm:text-6xl lg:text-7xl font-serif absolute -bottom-9 sm:-bottom-11 -right-3 sm:-right-6 select-none pointer-events-none">”</span>
+                <span className="text-rose-300/20 text-4xl sm:text-5xl font-serif absolute -bottom-6 sm:-bottom-8 -right-2 sm:-right-4 select-none pointer-events-none">”</span>
               </div>
-              <div className="pt-8 lg:pt-12 flex items-center gap-2 text-xs sm:text-sm lg:text-base font-mono tracking-widest uppercase text-rose-300/75">
+              <div className="pt-4 sm:pt-6 flex items-center gap-2 text-xs sm:text-sm font-mono tracking-widest uppercase text-rose-300/75">
                 <span>— Avec tout mon amour —</span>
               </div>
             </div>
