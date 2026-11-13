@@ -815,18 +815,18 @@ const TypewriterMessage: React.FC<TypewriterMessageProps> = ({ gift, onClose }) 
     isUserScrolledUp.current = scrollHeight - scrollTop - clientHeight > 40;
   };
 
-  // Défilement automatique doux uniquement si l'utilisateur n'a pas scrollé vers le haut
-  useEffect(() => {
-    if (scrollRef.current && !isUserScrolledUp.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-  }, [displayedChars]);
-
   const isTyping = displayedChars < gift.message.length;
-  const currentText = gift.message.slice(0, displayedChars);
   const isLongLetter = gift.message.length > 220;
+  const currentText = gift.message.slice(0, displayedChars);
   const paragraphs = currentText.split('\n\n');
   const fullParagraphs = gift.message.split('\n\n');
+
+  // Défilement automatique doux uniquement pour les très longues lettres de lecture
+  useEffect(() => {
+    if (scrollRef.current && !isUserScrolledUp.current && isLongLetter && !gift.audio) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [displayedChars, isLongLetter, gift.audio]);
 
   return (
     <div
@@ -888,20 +888,40 @@ const TypewriterMessage: React.FC<TypewriterMessageProps> = ({ gift, onClose }) 
           </div>
         </div>
 
-        {/* Lecteur de message vocal si le cadeau contient un enregistrement audio */}
-        {gift.audio && (
-          <div className="shrink-0 mb-2 sm:mb-3 animate-in fade-in zoom-in-95 duration-500">
-            <VoiceNotePlayer audioSrc={gift.audio} senderName={gift.name} />
-          </div>
-        )}
-
-        {/* Zone de lecture avec mise en page soignée pour longues lettres et messages courts */}
+        {/* Zone de lecture avec mise en page soignée pour longues lettres, messages audio et messages courts */}
         <div
           ref={scrollRef}
           onScroll={handleScroll}
           className="flex-1 overflow-y-auto pr-2 sm:pr-4 lg:pr-6 luxury-scrollbar scroll-smooth flex flex-col"
         >
-          {isLongLetter ? (
+          {gift.audio ? (
+            /* Mise en page dédiée pour message avec note vocale : lecteur en tête puis texte complet en dessous sans débordement */
+            <div className="flex-1 flex flex-col items-center justify-start text-center px-2 sm:px-4 py-2 sm:py-4 w-full max-w-2xl mx-auto space-y-4 sm:space-y-6">
+              {/* Le lecteur de note vocale stylé */}
+              <div className="w-full shrink-0">
+                <VoiceNotePlayer audioSrc={gift.audio} senderName={gift.name} />
+              </div>
+
+              {/* Texte complet de la note vocale */}
+              <div className="space-y-3 sm:space-y-4 w-full">
+                {paragraphs.map((p, idx) => (
+                  <p
+                    key={idx}
+                    className="font-serif-luxury text-base sm:text-xl lg:text-2xl text-rose-100/95 leading-relaxed italic drop-shadow-sm px-2"
+                  >
+                    {p}
+                    {idx === paragraphs.length - 1 && isTyping && (
+                      <span className="inline-block w-2 sm:w-2.5 h-4 sm:h-5 lg:h-6 bg-rose-200 animate-pulse ml-1 align-middle shadow-[0_0_8px_rgba(255,255,255,0.85)]" />
+                    )}
+                  </p>
+                ))}
+              </div>
+
+              <div className="pt-2 sm:pt-4 flex items-center gap-2 text-xs sm:text-sm font-mono tracking-widest uppercase text-rose-300/75">
+                <span>— Avec tout mon amour —</span>
+              </div>
+            </div>
+          ) : isLongLetter ? (
             /* Mise en page style lettre manuscrite élégante */
             <div className="space-y-4 lg:space-y-6 text-rose-50/95 font-sans pb-4 select-none">
               {paragraphs.map((p, idx) => {
@@ -1017,7 +1037,7 @@ const TypewriterMessage: React.FC<TypewriterMessageProps> = ({ gift, onClose }) 
             </div>
           ) : (
             /* Mise en page style carte de vœux luxueuse pour messages courts */
-            <div className="my-auto flex flex-col items-center justify-center text-center px-3 py-6 sm:py-10">
+            <div className="m-auto flex flex-col items-center justify-center text-center px-3 py-6 sm:py-8">
               <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-full bg-rose-500/15 border border-rose-300/30 flex items-center justify-center text-amber-300 text-base sm:text-xl lg:text-2xl mb-5 lg:mb-8 shadow-[0_0_20px_rgba(244,114,182,0.25)] shrink-0">
                 ✨
               </div>
