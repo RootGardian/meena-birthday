@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import confetti from 'canvas-confetti';
+import { Play, Pause, Mic } from 'lucide-react';
 import { FallingPetals } from './FallingPetals';
+
+// Import des messages vocaux de Papa 1 et Papa 2
+import audioPapa1 from '../../assets/WhatsApp Audio 2026-11-12 at 20.50.50.ogg';
+import audioPapa2 from '../../assets/WhatsApp Audio 2026-11-12 at 20.51.21.ogg';
 
 interface ThirtyGiftsScreenProps {
   onBackToCountdown?: () => void;
@@ -12,6 +17,7 @@ export interface GiftItem {
   name: string;
   title: string;
   message: string;
+  audio?: string;
 }
 
 // 30 messages et cadeaux personnalisés offerts par ses 30 proches
@@ -598,8 +604,168 @@ Continue de briller, de sourire et de garder ce magnifique cœur. Que cette nouv
 Je t’aime énormément ma princesse. Profite pleinement de ta journée !
 
 Joyeux anniversaire encore Amina Faty 😍🥰❤️`
+  },
+  {
+    id: 35,
+    name: 'Papa 1',
+    title: 'Papa 1',
+    audio: audioPapa1,
+    message: `Joyeux anniversaire Aminata ! ❤️🎙️
+
+Voici un message vocal plein d'amour, de fierté et de bénédictions de la part de ton Papa 1.
+
+Prends un instant pour écouter sa voix :`
+  },
+  {
+    id: 36,
+    name: 'Papa 2',
+    title: 'Papa 2',
+    audio: audioPapa2,
+    message: `Joyeux anniversaire Aminata ! ❤️🎙️
+
+Voici un message vocal plein d'amour, de fierté et de bénédictions de la part de ton Papa 2.
+
+Prends un instant pour écouter sa voix :`
   }
 ];
+
+interface VoiceNotePlayerProps {
+  audioSrc: string;
+  senderName: string;
+}
+
+const VoiceNotePlayer: React.FC<VoiceNotePlayerProps> = ({ audioSrc, senderName }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const onTimeUpdate = () => setCurrentTime(audio.currentTime);
+    const onLoadedMetadata = () => {
+      if (audio.duration && !isNaN(audio.duration) && isFinite(audio.duration)) {
+        setDuration(audio.duration);
+      }
+    };
+    const onEnded = () => {
+      setIsPlaying(false);
+      setCurrentTime(0);
+      window.dispatchEvent(new CustomEvent('birthday-resume-music'));
+    };
+
+    audio.addEventListener('timeupdate', onTimeUpdate);
+    audio.addEventListener('loadedmetadata', onLoadedMetadata);
+    audio.addEventListener('ended', onEnded);
+
+    return () => {
+      audio.removeEventListener('timeupdate', onTimeUpdate);
+      audio.removeEventListener('loadedmetadata', onLoadedMetadata);
+      audio.removeEventListener('ended', onEnded);
+      // Toujours reprendre la musique si on ferme le modal
+      window.dispatchEvent(new CustomEvent('birthday-resume-music'));
+    };
+  }, []);
+
+  const togglePlay = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (isPlaying) {
+      audio.pause();
+      setIsPlaying(false);
+      window.dispatchEvent(new CustomEvent('birthday-resume-music'));
+    } else {
+      window.dispatchEvent(new CustomEvent('birthday-pause-music'));
+      audio.play().catch(() => {});
+      setIsPlaying(true);
+    }
+  };
+
+  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    const time = Number(e.target.value);
+    audio.currentTime = time;
+    setCurrentTime(time);
+  };
+
+  const formatTime = (secs: number) => {
+    if (!secs || isNaN(secs) || !isFinite(secs)) return '0:00';
+    const m = Math.floor(secs / 60);
+    const s = Math.floor(secs % 60);
+    return `${m}:${s < 10 ? '0' : ''}${s}`;
+  };
+
+  const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
+
+  return (
+    <div className="w-full my-3 sm:my-4 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-rose-950/60 via-purple-950/40 to-pink-950/60 border border-rose-400/40 shadow-[0_0_25px_rgba(244,114,182,0.25)] backdrop-blur-md">
+      <audio ref={audioRef} src={audioSrc} preload="metadata" />
+
+      <div className="flex items-center gap-3 sm:gap-4">
+        {/* Bouton Play / Pause avec lueur rose vibrante */}
+        <button
+          onClick={togglePlay}
+          className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-tr from-rose-500 to-pink-500 text-white flex items-center justify-center shadow-[0_0_20px_rgba(244,63,94,0.6)] hover:scale-105 active:scale-95 transition-all cursor-pointer shrink-0"
+        >
+          {isPlaying ? (
+            <Pause className="w-5 h-5 sm:w-6 sm:h-6 fill-white text-white" />
+          ) : (
+            <Play className="w-5 h-5 sm:w-6 sm:h-6 ml-0.5 fill-white text-white" />
+          )}
+        </button>
+
+        {/* Visualisation onde sonore & scrubber */}
+        <div className="flex-1 flex flex-col justify-center gap-1.5">
+          <div className="flex items-center justify-between text-xs text-rose-200/90 font-mono">
+            <span className="flex items-center gap-1.5 text-[11px] sm:text-xs">
+              <span className={`w-2 h-2 rounded-full ${isPlaying ? 'bg-emerald-400 animate-ping' : 'bg-rose-400'}`} />
+              Note vocale de <strong className="text-white font-serif-luxury">{senderName}</strong>
+            </span>
+            <span className="font-semibold text-rose-300">
+              {formatTime(currentTime)} {duration > 0 && `/ ${formatTime(duration)}`}
+            </span>
+          </div>
+
+          {/* Barres d'ondes audio animées style WhatsApp */}
+          <div className="flex items-center gap-1 h-6 py-1">
+            {Array.from({ length: 24 }).map((_, i) => {
+              const barProgress = (i / 24) * 100;
+              const isPassed = barProgress <= progress;
+              const heightMultiplier = [40, 70, 30, 90, 60, 100, 45, 80, 55, 95, 35, 75, 50, 85, 65, 40, 90, 55, 70, 45, 80, 60, 35, 65][i % 24];
+              return (
+                <div
+                  key={i}
+                  className={`flex-1 rounded-full transition-all duration-150 ${
+                    isPassed ? 'bg-rose-400 shadow-[0_0_6px_rgba(244,114,182,0.8)]' : 'bg-white/20'
+                  } ${isPlaying ? 'animate-pulse' : ''}`}
+                  style={{
+                    height: `${heightMultiplier}%`,
+                    animationDelay: `${(i % 5) * 0.12}s`,
+                  }}
+                />
+              );
+            })}
+          </div>
+
+          {/* Curseur seek tactile fluide */}
+          <input
+            type="range"
+            min="0"
+            max={duration || 1}
+            step="0.05"
+            value={currentTime}
+            onChange={handleSeek}
+            className="w-full h-1.5 accent-rose-400 bg-white/10 rounded-lg appearance-none cursor-pointer mt-1"
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 interface TypewriterMessageProps {
   gift: GiftItem;
@@ -721,6 +887,13 @@ const TypewriterMessage: React.FC<TypewriterMessageProps> = ({ gift, onClose }) 
             <strong className="text-white font-semibold font-serif-luxury tracking-wide text-xs sm:text-sm lg:text-base">{gift.name}</strong>
           </div>
         </div>
+
+        {/* Lecteur de message vocal si le cadeau contient un enregistrement audio */}
+        {gift.audio && (
+          <div className="shrink-0 mb-2 sm:mb-3 animate-in fade-in zoom-in-95 duration-500">
+            <VoiceNotePlayer audioSrc={gift.audio} senderName={gift.name} />
+          </div>
+        )}
 
         {/* Zone de lecture avec mise en page soignée pour longues lettres et messages courts */}
         <div
@@ -984,6 +1157,14 @@ export const ThirtyGiftsScreen: React.FC<ThirtyGiftsScreenProps> = ({ onGoToOurM
                   : 'bg-white/[0.03] hover:bg-white/[0.08] border border-white/15 hover:border-rose-400/60 hover:scale-105 hover:shadow-xl hover:shadow-rose-500/20'
                   }`}
               >
+                {/* Badge audio si le cadeau contient un message vocal */}
+                {gift.audio && (
+                  <span className="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 z-20 flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-rose-500/35 border border-rose-300/40 text-[9px] sm:text-[10px] text-rose-100 shadow-[0_0_10px_rgba(244,114,182,0.4)] backdrop-blur-xs font-mono">
+                    <Mic className="w-2.5 h-2.5 text-rose-300" />
+                    <span>Vocal</span>
+                  </span>
+                )}
+
                 {/* Visual Gift Box matching the design */}
                 <div className="relative w-14 sm:w-16 md:w-20 lg:w-24 xl:w-28 h-14 sm:h-16 md:h-20 lg:h-24 xl:h-28 flex items-center justify-center mb-2 lg:mb-3">
                   {/* Glowing bow on top */}
