@@ -627,6 +627,22 @@ Je t’aime énormément ma princesse. Profite pleinement de ta journée !
 
 Joyeux anniversaire encore Amina Faty 😍🥰❤️`
   },
+  {
+    id: 37,
+    name: 'Melo',
+    title: 'Melo',
+    message: `Happy birthday beautiful ❤️
+
+Je te souhaite tout le bonheur du monde, beaucoup de réussite, de santé et surtout de paix dans ta vie.
+
+Qu’Allah te protège, te guide et t’accorde tout ce que ton cœur désire. Reste toujours cette belle personne que tu es, ne change surtout pas.
+
+Profite à fond de ta journée, tu mérites que de belles choses.
+
+Gros bisous ❤️🥳
+
+Melo`
+  }
 ];
 
 interface VoiceNotePlayerProps {
